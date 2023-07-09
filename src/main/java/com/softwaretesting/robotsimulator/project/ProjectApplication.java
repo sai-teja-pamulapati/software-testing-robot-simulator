@@ -1,8 +1,15 @@
 package com.softwaretesting.robotsimulator.project;
 
+import java.util.Scanner;
+
 public class ProjectApplication {
 
 	public static void main(String[] args) {
+		
+		
+		Scanner Userin = new Scanner(System.in);
+		
+		
 		System.out.print("Welcome to RobotSimulator!!!\n"
 				+ "Use below commands!!!\n"
 				+ "[1] [U|u]     => Pen up\r\n"
@@ -16,6 +23,8 @@ public class ProjectApplication {
 				+ "[9] [I n|i n] => Initialize the system: The values of the array floor are zeros and the robot\r\n"
 				+ "                  is back to [0, 0], pen up and facing north. x size of the array, an integer greater than zero\r\n");
 		System.out.print("Enter command: ");
+		String command = Userin.nextLine();
+		//System.out.println(command);
 		
 	}
 
