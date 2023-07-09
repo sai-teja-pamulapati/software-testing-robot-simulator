@@ -18,26 +18,34 @@
 	</properties>
 	<dependencies>
 		<!-- junit 5, unit test -->
-        	<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
 		<dependency>
-		    <groupId>org.junit.jupiter</groupId>
-		    <artifactId>junit-jupiter-engine</artifactId>
-		    <version>5.9.3</version>
-		    <scope>test</scope>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.9.3</version>
+			<scope>test</scope>
 		</dependency>
 
-        
-        	<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner -->
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
-		    <groupId>org.junit.platform</groupId>
-		    <artifactId>junit-platform-runner</artifactId>
-		    <version>1.9.3</version>
-		    <scope>test</scope>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<!--suppress MavenPackageUpdate -->
+			<version>3.0</version>
 		</dependency>
-		
+
+
+		<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner -->
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-runner</artifactId>
+			<version>1.9.3</version>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<dependency>
-		    <groupId>org.testng</groupId>
+			<groupId>org.testng</groupId>
 		    <artifactId>testng</artifactId>
 		    <version>7.8.0</version>
 		    <scope>test</scope>
