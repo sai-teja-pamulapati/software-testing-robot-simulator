@@ -2,10 +2,7 @@ package com.softwaretesting.robotsimulator.project;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ProjectApplication {
 
@@ -44,10 +41,14 @@ public class ProjectApplication {
 		ArrayList<String> commandHistory = new ArrayList<>();
 
 		while (true) {
-			System.out.println("\n" + "Enter command: ");
+			System.out.println("Enter command: ");
 			String secondCommand = scanner.nextLine();
+			String[] commandSplit = secondCommand.split("\\s+");
 			commandHistory.add(secondCommand);
-			switch (secondCommand) {
+			if (commandSplit.length < 1) {
+				System.out.println("Please enter a command");
+			}
+			switch (commandSplit[0]) {
 				case "c":
 				case "C":
 					matrix.printPosition();
@@ -73,13 +74,12 @@ public class ProjectApplication {
 
 				case "m":
 				case "M":
-					matrix.move(1);
-
-					int steps = Integer.parseInt(secondCommand.substring(2));
-
-					move(steps);
-					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+					String[] splitStrings = secondCommand.split("\\s+");
+					if (splitStrings.length == 2 && StringUtils.isNumeric(splitStrings[1])) {
+						matrix.move(Integer.valueOf(splitStrings[1]));
+					} else {
+						System.out.println("Invalid command!");
+					}
 					break;
 
 				case "r":
@@ -112,7 +112,7 @@ public class ProjectApplication {
 
 
 				default:
-					System.out.println("Invalid command.");
+					System.out.println("Invalid command!");
 
 			}
 		}
@@ -131,7 +131,6 @@ public class ProjectApplication {
 				System.exit(0);
 			}
 			String[] splitStrings = firstCommand.split("\\s+");
-			System.out.println(splitStrings.length);
 			if (splitStrings.length == 2 && "i".equalsIgnoreCase(splitStrings[0]) && StringUtils.isNumeric(splitStrings[1])) {
 				initializeMatrix(Integer.parseInt(splitStrings[1]));
 				break;
@@ -154,7 +153,7 @@ public class ProjectApplication {
 
 	private static void move(int steps) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
@@ -169,8 +168,19 @@ public class ProjectApplication {
 		for (int i = 0 ; i < size ; i++) {
 			listOfList.add(integerList);
 		}
-		matrix.setMatrix(listOfList);
-		matrix.show();
+
+		int[][] arrayOfArray = new int[size][size];
+		for (int[] array : arrayOfArray) {
+			Arrays.fill(array , 0);
+		}
+
+		matrix.setSize(size);
+		matrix.setYPosition(0);
+		matrix.setXPosition(0);
+		matrix.setPenPosition(PEN_POSITION.UP);
+		matrix.setDirection(DIRECTION.NORTH);
+		matrix.setMatrix(arrayOfArray);
+//		matrix.show();
 	}
 
 }
