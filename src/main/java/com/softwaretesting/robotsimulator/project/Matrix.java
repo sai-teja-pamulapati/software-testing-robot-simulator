@@ -83,7 +83,14 @@ public class Matrix {
     }
 
     public void rotate(ROTATION rotation) {
-        //TODO
+    	switch(rotation) {
+    	case RIGHT:
+    		moveRight(); 
+    	}
+    }
+    
+    private void moveRight() {
+    	
     }
 
     public void move(Integer steps) {
@@ -160,7 +167,7 @@ public class Matrix {
         	setPenPosition(penPosition.DOWN);break;
         }
     }
-//rushit
+
 	
 
 }
