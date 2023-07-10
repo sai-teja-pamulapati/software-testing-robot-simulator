@@ -30,81 +30,78 @@ public class ProjectApplication {
 				""");
 
 		initializeSystem(scanner);
-		moveRobot(scanner);
+		execute(scanner);
+	}
+
+	private static void execute(Scanner scanner) {
+
+		while (true) {
+			try {
+				moveRobot(scanner);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				
+			}
+		}
 	}
 
 	private static void moveRobot(Scanner scanner) {
+		System.out.print("Enter command: ");
+		String secondCommand = scanner.nextLine();
+		String[] commandSplit = secondCommand.split("\\s+");
+		if (commandSplit.length < 1) {
+			System.out.println("Please enter a command");
+		}
+		switch (commandSplit[0]) {
 
-		int x = 0;
-		int y = 0;
-		boolean penDown = false;
-		int facing = 0; // 0: north, 1: east, 2: south, 3: west
+			case "c":
+			case "C":
+				matrix.printPosition();					
+				break;
 
-		ArrayList<String> commandHistory = new ArrayList<>();
+			case "d":
+			case "D":
+				matrix.changePenPosition(PEN_POSITION.DOWN);
+				break;
 
-		while (true) {
-			System.out.print("Enter command: ");
-			String secondCommand = scanner.nextLine();
-			String[] commandSplit = secondCommand.split("\\s+");
-			commandHistory.add(secondCommand);
-			if (commandSplit.length < 1) {
-				System.out.println("Please enter a command");
-			}
-			switch (commandSplit[0]) {
+			case "u":
+			case "U":
+				matrix.changePenPosition(PEN_POSITION.UP);
+				break;
 
-				case "c":
-				case "C":
-					matrix.printPosition();					
-					break;
-
-				case "d":
-				case "D":
-					matrix.changePenPosition(PEN_POSITION.DOWN);
-					matrix.printPosition();
-					break;
-
-				case "u":
-				case "U":
-					matrix.changePenPosition(PEN_POSITION.UP);
-					matrix.printPosition();
-					break;
-
-				case "m":
-				case "M":
-					String[] splitStrings = secondCommand.split("\\s+");
-					if (splitStrings.length == 2 && StringUtils.isNumeric(splitStrings[1])) {
-						matrix.move(Integer.valueOf(splitStrings[1]));
-					} else {
-						System.out.println("Invalid command!");
-					}
-					matrix.printPosition();
-					break;
-
-				case "r":
-				case "R":
-					matrix.rotate(ROTATION.RIGHT);
-					matrix.printPosition();
-
-				case "l":
-				case "L":
-					matrix.rotate(ROTATION.LEFT);
-					matrix.printPosition();
-
-				case "p":
-				case "P":
-					matrix.show();
-					break;
-
-				case "q":
-				case "Q":
-					System.out.println("Bye");
-					System.exit(0);
-
-
-				default:
+			case "m":
+			case "M":
+				String[] splitStrings = secondCommand.split("\\s+");
+				if (splitStrings.length == 2 && StringUtils.isNumeric(splitStrings[1])) {
+					matrix.move(Integer.valueOf(splitStrings[1]));
+				} else {
 					System.out.println("Invalid command!");
+				}
+				break;
 
-			}
+			case "r":
+			case "R":
+				matrix.rotate(ROTATION.RIGHT);
+				break;
+				
+			case "l":
+			case "L":
+				matrix.rotate(ROTATION.LEFT);
+				break;
+			case "p":
+			case "P":
+				matrix.show();
+				break;
+
+			case "q":
+			case "Q":
+				System.out.println("Bye");
+				System.exit(0);
+
+
+			default:
+				System.out.println("Invalid command!");
+
 		}
 	}
 
@@ -151,7 +148,6 @@ public class ProjectApplication {
 		matrix.setPenPosition(PEN_POSITION.UP);
 		matrix.setDirection(DIRECTION.NORTH);
 		matrix.setMatrix(arrayOfArray);
-//		matrix.show();
 
 	}
 
