@@ -164,8 +164,8 @@ public class ProjectApplication {
 		}
 
 		matrix.setSize(size);
-		matrix.setYPosition(0);
-		matrix.setXPosition(0);
+		matrix.setxPosition(0);
+		matrix.setyPosition(0);
 		matrix.setPenPosition(PEN_POSITION.UP);
 		matrix.setDirection(DIRECTION.NORTH);
 		matrix.setMatrix(arrayOfArray);

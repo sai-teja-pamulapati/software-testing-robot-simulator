@@ -17,7 +17,47 @@ public class Matrix {
         return matrix;
     }
 
-    public void setMatrix(int[][] matrix) {
+    public DIRECTION getDirection() {
+		return direction;
+	}
+
+	public void setDirection(DIRECTION direction) {
+		this.direction = direction;
+	}
+
+	public PEN_POSITION getPenPosition() {
+		return penPosition;
+	}
+
+	public void setPenPosition(PEN_POSITION penPosition) {
+		this.penPosition = penPosition;
+	}
+
+	public Integer getxPosition() {
+		return xPosition;
+	}
+
+	public void setxPosition(Integer xPosition) {
+		this.xPosition = xPosition;
+	}
+
+	public Integer getyPosition() {
+		return yPosition;
+	}
+
+	public void setyPosition(Integer yPosition) {
+		this.yPosition = yPosition;
+	}
+
+	public Integer getSize() {
+		return size;
+	}
+
+	public void setSize(Integer size) {
+		this.size = size;
+	}
+
+	public void setMatrix(int[][] matrix) {
         this.matrix = matrix;
     }
 
@@ -113,7 +153,14 @@ public class Matrix {
     }
 
     public void changePenPosition(PEN_POSITION penPosition) {
-        //TODO
+        switch(penPosition) {
+        case UP:
+        	setPenPosition(penPosition.UP);break;
+        case DOWN:
+        	setPenPosition(penPosition.DOWN);break;
+        }
     }
+
+	
 
 }
