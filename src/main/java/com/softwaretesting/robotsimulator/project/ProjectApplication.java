@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 public class ProjectApplication {
 
+	private static Matrix matrix = new Matrix();
+
 	public static void main(String[] args) {
 
 
@@ -42,40 +44,39 @@ public class ProjectApplication {
 		ArrayList<String> commandHistory = new ArrayList<>();
 
 		while (true) {
-			System.out.println("\n" + "Enter another command: ");
+			System.out.println("\n" + "Enter command: ");
 			String secondCommand = scanner.nextLine();
-
+			commandHistory.add(secondCommand);
 			switch (secondCommand) {
 				case "c":
 				case "C":
-
-					commandHistory.add(secondCommand);
+					matrix.printPosition();
 					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
 							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
 					break;
 
 				case "d":
 				case "D":
-
+					matrix.changePenPosition(PEN_POSITION.DOWN);
 					penDown = true;
-					commandHistory.add(secondCommand);
 					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
 							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
 					break;
 
 				case "u":
 				case "U":
-
+					matrix.changePenPosition(PEN_POSITION.UP);
 					penDown = false;
-					commandHistory.add(secondCommand);
 					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
 							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
 					break;
 
 				case "m":
 				case "M":
+					matrix.move(1);
+
 					int steps = Integer.parseInt(secondCommand.substring(2));
-					commandHistory.add(secondCommand);
+
 					move(steps);
 					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
 							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
@@ -83,16 +84,25 @@ public class ProjectApplication {
 
 				case "r":
 				case "R":
-					commandHistory.add(secondCommand);
+					matrix.rotate(ROTATION.RIGHT);
+
 					turnRight();
 					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
 							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
 					break;
 
+				case "l":
+				case "L":
+					matrix.rotate(ROTATION.LEFT);
+
+					turnRight();
+					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
+							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+					break;
 
 				case "p":
 				case "P":
-
+					matrix.show();
 					break;
 
 				case "q":
@@ -104,11 +114,7 @@ public class ProjectApplication {
 				default:
 					System.out.println("Invalid command.");
 
-
 			}
-			System.out.println("\n" + "Enter another command: ");
-			secondCommand = scanner.nextLine();
-
 		}
 	}
 
@@ -156,8 +162,6 @@ public class ProjectApplication {
 
 
 	private static void initializeMatrix(Integer size) {
-		//System.out.println(size);
-		Matrix matrix = new Matrix();
 
 		List<Integer> integerList = new ArrayList<>(Collections.nCopies(size , 0));
 
