@@ -28,13 +28,12 @@ public class ProjectApplication {
 				                  is back to [0, 0], pen up and facing north. x size of the array, an integer greater than zero\r
 				""");
 		
-		int[][] floor;
+		
 		int x = 0;
 		int y = 0;
 		boolean penDown = false;
 		int facing = 0; // 0: north, 1: east, 2: south, 3: west
-		final int MAX_SIZE = 100;
-		int size;
+		
 		ArrayList<String> commandHistory = new ArrayList<String>();
 		
 		
@@ -59,7 +58,8 @@ public class ProjectApplication {
 								
 			}
 		}
-			
+		
+					
 			System.out.println("\n"+"Enter another command: ");
 			String secondCommand = scanner.nextLine();
 			
@@ -88,17 +88,74 @@ public class ProjectApplication {
 				commandHistory.add(secondCommand);				
 				System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
 						+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
-				break;	
+				break;
+				
+			case "m":
+			case "M":
+                int steps = Integer.parseInt(secondCommand.substring(2));
+                commandHistory.add(secondCommand);
+                move(steps);
+                System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
+						+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+                break;
+            
+			case "r":
+            case "R":
+            	commandHistory.add(secondCommand);
+                turnRight();
+                System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
+						+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+                break;
+             
+            
+            case "p":    
+            case "P":
+            	
+                break;
+                
+            case "q":
+            case "Q":
+            	System.out.println("Bye");
+				System.exit(0);
+				
+                
+
+            default:
+                System.out.println("Invalid command.");
 			
 			
 			}
+			System.out.println("\n"+"Enter another command: ");
+			secondCommand = scanner.nextLine();
+			
+			
+		}
+			
 		
 
-	}
+	
 	
 
 	
 	
+
+	private static void turnRight() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+	private static void move(int steps) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
 
 	private static void initializeMatrix(Integer size) {
 		//System.out.println(size);
