@@ -49,27 +49,22 @@ public class ProjectApplication {
 				System.out.println("Please enter a command");
 			}
 			switch (commandSplit[0]) {
+
 				case "c":
 				case "C":
-					matrix.printPosition();
-					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+					matrix.printPosition();					
 					break;
 
 				case "d":
 				case "D":
 					matrix.changePenPosition(PEN_POSITION.DOWN);
-					penDown = true;
-					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+					matrix.printPosition();
 					break;
 
 				case "u":
 				case "U":
 					matrix.changePenPosition(PEN_POSITION.UP);
-					penDown = false;
-					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+					matrix.printPosition();
 					break;
 
 				case "m":
@@ -80,25 +75,19 @@ public class ProjectApplication {
 					} else {
 						System.out.println("Invalid command!");
 					}
+					matrix.move(1);
+					matrix.printPosition();
 					break;
 
 				case "r":
 				case "R":
 					matrix.rotate(ROTATION.RIGHT);
-
-					turnRight();
-					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
-					break;
+					matrix.printPosition();
 
 				case "l":
 				case "L":
 					matrix.rotate(ROTATION.LEFT);
-
-					turnRight();
-					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
-					break;
+					matrix.printPosition();
 
 				case "p":
 				case "P":
@@ -181,6 +170,7 @@ public class ProjectApplication {
 		matrix.setDirection(DIRECTION.NORTH);
 		matrix.setMatrix(arrayOfArray);
 //		matrix.show();
+
 	}
 
 }
