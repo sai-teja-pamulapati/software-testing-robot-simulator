@@ -46,13 +46,14 @@ public class ProjectApplication {
 				break;
 			} else {
 				System.out.println("Please Initialize the system first");
+				
 			}
 		}
 
 	}
 
 	private static void initializeMatrix(Integer size) {
-		System.out.println(size);
+		//System.out.println(size);
 		Matrix matrix = new Matrix();
 
 		List<Integer> integerList = new ArrayList<>(Collections.nCopies(size , 0));
@@ -61,6 +62,7 @@ public class ProjectApplication {
 		for (int i = 0 ; i < size ; i++) {
 			listOfList.add(integerList);
 		}
+		matrix.setMatrix(listOfList);
 		matrix.show();
 	}
 
