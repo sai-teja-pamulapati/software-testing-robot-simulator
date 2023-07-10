@@ -48,57 +48,39 @@ public class ProjectApplication {
 			String secondCommand = scanner.nextLine();
 			commandHistory.add(secondCommand);
 			switch (secondCommand) {
+			
 				case "c":
 				case "C":
-					matrix.printPosition();
-					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+					matrix.printPosition();					
 					break;
 
 				case "d":
 				case "D":
 					matrix.changePenPosition(PEN_POSITION.DOWN);
-					penDown = true;
-					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+					matrix.printPosition();
 					break;
 
 				case "u":
 				case "U":
 					matrix.changePenPosition(PEN_POSITION.UP);
-					penDown = false;
-					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+					matrix.printPosition();
 					break;
 
 				case "m":
 				case "M":
 					matrix.move(1);
-
-					int steps = Integer.parseInt(secondCommand.substring(2));
-
-					move(steps);
-					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+					matrix.printPosition();
 					break;
 
 				case "r":
 				case "R":
 					matrix.rotate(ROTATION.RIGHT);
-
-					turnRight();
-					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
-					break;
+					matrix.printPosition();
 
 				case "l":
 				case "L":
 					matrix.rotate(ROTATION.LEFT);
-
-					turnRight();
-					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
-					break;
+					matrix.printPosition();
 
 				case "p":
 				case "P":
@@ -170,6 +152,8 @@ public class ProjectApplication {
 			listOfList.add(integerList);
 		}
 		matrix.setMatrix(listOfList);
+		//kavan
+		matrix.setDirection();
 		matrix.show();
 	}
 

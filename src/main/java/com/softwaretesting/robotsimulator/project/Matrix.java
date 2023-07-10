@@ -51,7 +51,8 @@ public class Matrix {
     }
 
     public void printPosition() {
-        //TODO
+    	System.out.println("Position: (" + xPosition + ", " + yPosition + ") - Pen: " + (penPosition) + " - Facing: "
+				+ (direction));
     }
 
     public void changePenPosition(PEN_POSITION penPosition) {
