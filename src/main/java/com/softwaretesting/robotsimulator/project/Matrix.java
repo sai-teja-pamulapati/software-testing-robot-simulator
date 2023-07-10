@@ -62,9 +62,9 @@ public class Matrix {
     }
 
     public void show() {
-        for (int i = 0 ; i < size ; i++) {
+        for (int i = size - 1 ; i >= 0 ; i--) {
             int[] subList = matrix[i];
-            System.out.print((size - i - 1) + "| ");
+            System.out.print(i + "| ");
             for (int j = 0 ; j < size ; j++) {
                 System.out.print(subList[j] + " ");
             }
@@ -83,14 +83,10 @@ public class Matrix {
     }
 
     public void rotate(ROTATION rotation) {
-    	switch(rotation) {
-    	case RIGHT:
-    		moveRight(); 
-    		break;
-    	case LEFT:
-    		moveLeft();
-    		break;
-    	}
+        switch (rotation) {
+            case RIGHT -> moveRight();
+            case LEFT -> moveLeft();
+        }
     }
     
 
@@ -129,18 +125,10 @@ public class Matrix {
 
     public void move(Integer steps) {
         switch (this.direction) {
-            case EAST -> {
-                moveEast(steps);
-            }
-            case WEST -> {
-                moveWest(steps);
-            }
-            case NORTH -> {
-                moveNorth(steps);
-            }
-            case SOUTH -> {
-                moveSouth(steps);
-            }
+            case EAST -> moveEast(steps);
+            case WEST -> moveWest(steps);
+            case NORTH -> moveNorth(steps);
+            case SOUTH -> moveSouth(steps);
         }
     }
 
@@ -149,7 +137,9 @@ public class Matrix {
             throw new IllegalArgumentException("Robot exceeding the matrix boundaries");
         }
         if (PEN_POSITION.DOWN.equals(this.penPosition)) {
-
+            for (int i = this.yPosition ; i >= this.yPosition - steps ; i--) {
+                this.matrix[i][this.xPosition] = 1;
+            }
         }
         this.yPosition = this.yPosition - steps;
     }
@@ -159,7 +149,9 @@ public class Matrix {
             throw new IllegalArgumentException("Robot exceeding the matrix boundaries");
         }
         if (PEN_POSITION.DOWN.equals(this.penPosition)) {
-
+            for (int i = this.yPosition ; i <= this.yPosition + steps ; i++) {
+                this.matrix[i][this.xPosition] = 1;
+            }
         }
         this.yPosition = this.yPosition + steps;
 
@@ -170,7 +162,9 @@ public class Matrix {
             throw new IllegalArgumentException("Robot exceeding the matrix boundaries");
         }
         if (PEN_POSITION.DOWN.equals(this.penPosition)) {
-
+            for (int i = this.xPosition ; i >= this.xPosition - steps ; i--) {
+                this.matrix[this.yPosition][i] = 1;
+            }
         }
         this.xPosition = this.xPosition - steps;
 
@@ -181,8 +175,8 @@ public class Matrix {
             throw new IllegalArgumentException("Robot exceeding the matrix boundaries");
         }
         if (PEN_POSITION.DOWN.equals(this.penPosition)) {
-            for (int i = 0 ; i < steps ; i++) {
-
+            for (int i = this.xPosition ; i <= this.xPosition + steps ; i++) {
+                this.matrix[yPosition][i] = 1;
             }
         }
         this.xPosition = this.xPosition + steps;
@@ -195,7 +189,6 @@ public class Matrix {
 
     public void changePenPosition(PEN_POSITION penPosition) {
         setPenPosition(penPosition);
-       
     }
 
 	

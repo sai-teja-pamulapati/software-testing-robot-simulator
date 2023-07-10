@@ -2,7 +2,9 @@ package com.softwaretesting.robotsimulator.project;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class ProjectApplication {
 
@@ -41,7 +43,7 @@ public class ProjectApplication {
 		ArrayList<String> commandHistory = new ArrayList<>();
 
 		while (true) {
-			System.out.println("Enter command: ");
+			System.out.print("Enter command: ");
 			String secondCommand = scanner.nextLine();
 			String[] commandSplit = secondCommand.split("\\s+");
 			commandHistory.add(secondCommand);
@@ -75,7 +77,6 @@ public class ProjectApplication {
 					} else {
 						System.out.println("Invalid command!");
 					}
-					matrix.move(1);
 					matrix.printPosition();
 					break;
 
@@ -138,12 +139,6 @@ public class ProjectApplication {
 
 	private static void initializeMatrix(Integer size) {
 
-		List<Integer> integerList = new ArrayList<>(Collections.nCopies(size , 0));
-
-		List<List<Integer>> listOfList = new ArrayList<>(size);
-		for (int i = 0 ; i < size ; i++) {
-			listOfList.add(integerList);
-		}
 
 		int[][] arrayOfArray = new int[size][size];
 		for (int[] array : arrayOfArray) {
