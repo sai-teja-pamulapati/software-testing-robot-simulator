@@ -27,7 +27,17 @@ public class ProjectApplication {
 				[9] [I n|i n] => Initialize the system: The values of the array floor are zeros and the robot\r
 				                  is back to [0, 0], pen up and facing north. x size of the array, an integer greater than zero\r
 				""");
-
+		
+		int[][] floor;
+		int x = 0;
+		int y = 0;
+		boolean penDown = false;
+		int facing = 0; // 0: north, 1: east, 2: south, 3: west
+		final int MAX_SIZE = 100;
+		int size;
+		ArrayList<String> commandHistory = new ArrayList<String>();
+		
+		
 		while (true) {
 			System.out.print("Enter command: ");
 			String firstCommand = scanner.nextLine();
@@ -46,11 +56,49 @@ public class ProjectApplication {
 				break;
 			} else {
 				System.out.println("Please Initialize the system first");
-				
+								
 			}
 		}
+			
+			System.out.println("\n"+"Enter another command: ");
+			String secondCommand = scanner.nextLine();
+			
+			switch (secondCommand) {
+			case "c":
+			case "C":
+				
+				commandHistory.add(secondCommand);
+				System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
+						+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+				break;
+			
+			case "d":
+			case "D":
+				
+				penDown = true;
+				commandHistory.add(secondCommand);				
+				System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
+						+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+				break;
+				
+			case "u":
+			case "U":
+				
+				penDown = false;
+				commandHistory.add(secondCommand);				
+				System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
+						+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+				break;	
+			
+			
+			}
+		
 
 	}
+	
+
+	
+	
 
 	private static void initializeMatrix(Integer size) {
 		//System.out.println(size);
