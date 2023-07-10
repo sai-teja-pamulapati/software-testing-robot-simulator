@@ -1,11 +1,16 @@
 package com.softwaretesting.robotsimulator.project;
 
-import java.util.Iterator;
+import lombok.Data;
+
 import java.util.List;
 
-import javax.sound.midi.Soundbank;
-
+@Data
 public class Matrix {
+
+    private DIRECTION direction;
+    private PEN_POSITION penPosition;
+    private Integer xPosition;
+    private Integer yPosition;
 
     List<List<Integer>> matrix = null;
 
@@ -27,13 +32,30 @@ public class Matrix {
         	System.out.println();
         }
         System.out.print("  ");
-        for (int i = 0; i < matrix.size(); i++) {
-			System.out.print("--");
-		}
+        for (int i = 0 ; i < matrix.size() ; i++) {
+            System.out.print("--");
+        }
         System.out.println();
         System.out.print("  ");
-        for(int i=0; i<matrix.size();i++) {
-        	System.out.print(i+" ");
+        for (int i = 0 ; i < matrix.size() ; i++) {
+            System.out.print(i + " ");
         }
     }
+
+    public void rotate(ROTATION rotation) {
+        //TODO
+    }
+
+    public void move(Integer steps) {
+        //TODO
+    }
+
+    public void printPosition() {
+        //TODO
+    }
+
+    public void changePenPosition(PEN_POSITION penPosition) {
+        //TODO
+    }
+
 }

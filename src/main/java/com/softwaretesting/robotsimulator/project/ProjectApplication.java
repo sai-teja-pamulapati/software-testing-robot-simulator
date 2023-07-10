@@ -27,16 +27,92 @@ public class ProjectApplication {
 				[9] [I n|i n] => Initialize the system: The values of the array floor are zeros and the robot\r
 				                  is back to [0, 0], pen up and facing north. x size of the array, an integer greater than zero\r
 				""");
-		
-		
+
+		initializeSystem(scanner);
+		moveRobot(scanner);
+	}
+
+	private static void moveRobot(Scanner scanner) {
+
 		int x = 0;
 		int y = 0;
 		boolean penDown = false;
 		int facing = 0; // 0: north, 1: east, 2: south, 3: west
-		
-		ArrayList<String> commandHistory = new ArrayList<String>();
-		
-		
+
+		ArrayList<String> commandHistory = new ArrayList<>();
+
+		while (true) {
+			System.out.println("\n" + "Enter another command: ");
+			String secondCommand = scanner.nextLine();
+
+			switch (secondCommand) {
+				case "c":
+				case "C":
+
+					commandHistory.add(secondCommand);
+					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
+							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+					break;
+
+				case "d":
+				case "D":
+
+					penDown = true;
+					commandHistory.add(secondCommand);
+					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
+							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+					break;
+
+				case "u":
+				case "U":
+
+					penDown = false;
+					commandHistory.add(secondCommand);
+					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
+							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+					break;
+
+				case "m":
+				case "M":
+					int steps = Integer.parseInt(secondCommand.substring(2));
+					commandHistory.add(secondCommand);
+					move(steps);
+					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
+							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+					break;
+
+				case "r":
+				case "R":
+					commandHistory.add(secondCommand);
+					turnRight();
+					System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
+							+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
+					break;
+
+
+				case "p":
+				case "P":
+
+					break;
+
+				case "q":
+				case "Q":
+					System.out.println("Bye");
+					System.exit(0);
+
+
+				default:
+					System.out.println("Invalid command.");
+
+
+			}
+			System.out.println("\n" + "Enter another command: ");
+			secondCommand = scanner.nextLine();
+
+		}
+	}
+
+	private static void initializeSystem(Scanner scanner) {
 		while (true) {
 			System.out.print("Enter command: ");
 			String firstCommand = scanner.nextLine();
@@ -55,93 +131,15 @@ public class ProjectApplication {
 				break;
 			} else {
 				System.out.println("Please Initialize the system first");
-								
+
 			}
 		}
-		
-					
-			System.out.println("\n"+"Enter another command: ");
-			String secondCommand = scanner.nextLine();
-			
-			switch (secondCommand) {
-			case "c":
-			case "C":
-				
-				commandHistory.add(secondCommand);
-				System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-						+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
-				break;
-			
-			case "d":
-			case "D":
-				
-				penDown = true;
-				commandHistory.add(secondCommand);				
-				System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-						+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
-				break;
-				
-			case "u":
-			case "U":
-				
-				penDown = false;
-				commandHistory.add(secondCommand);				
-				System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-						+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
-				break;
-				
-			case "m":
-			case "M":
-                int steps = Integer.parseInt(secondCommand.substring(2));
-                commandHistory.add(secondCommand);
-                move(steps);
-                System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-						+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
-                break;
-            
-			case "r":
-            case "R":
-            	commandHistory.add(secondCommand);
-                turnRight();
-                System.out.println("Position: (" + x + ", " + y + ") - Pen: " + (penDown ? "down" : "up") + " - Facing: "
-						+ (facing == 0 ? "north" : facing == 1 ? "east" : facing == 2 ? "south" : "west"));
-                break;
-             
-            
-            case "p":    
-            case "P":
-            	
-                break;
-                
-            case "q":
-            case "Q":
-            	System.out.println("Bye");
-				System.exit(0);
-				
-                
+	}
 
-            default:
-                System.out.println("Invalid command.");
-			
-			
-			}
-			System.out.println("\n"+"Enter another command: ");
-			secondCommand = scanner.nextLine();
-			
-			
-		}
-			
-		
-
-	
-	
-
-	
-	
 
 	private static void turnRight() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
