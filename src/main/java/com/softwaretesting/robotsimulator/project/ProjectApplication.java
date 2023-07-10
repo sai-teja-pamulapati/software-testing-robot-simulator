@@ -131,19 +131,6 @@ public class ProjectApplication {
 	}
 
 
-	private static void turnRight() {
-		// TODO Auto-generated method stub
-
-	}
-
-
-
-
-
-	private static void move(int steps) {
-		// TODO Auto-generated method stub
-
-	}
 
 
 

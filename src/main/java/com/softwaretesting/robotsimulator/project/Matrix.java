@@ -86,10 +86,44 @@ public class Matrix {
     	switch(rotation) {
     	case RIGHT:
     		moveRight(); 
+    		break;
+    	case LEFT:
+    		moveLeft();
+    		break;
     	}
     }
     
-    private void moveRight() {
+
+		
+	private void moveRight() {
+		if(this.direction == DIRECTION.NORTH) {
+			setDirection(DIRECTION.EAST);
+		}
+		else if(this.direction == DIRECTION.EAST){
+			setDirection(DIRECTION.SOUTH);
+		}
+		else if(this.direction == DIRECTION.SOUTH){
+			setDirection(DIRECTION.WEST);
+		}
+		else if(this.direction == DIRECTION.WEST){
+			setDirection(DIRECTION.NORTH);
+		}
+    	
+    }
+	
+    private void moveLeft() {
+		if(this.direction == DIRECTION.NORTH) {
+			setDirection(DIRECTION.WEST);
+		}
+		else if(this.direction == DIRECTION.WEST){
+			setDirection(DIRECTION.SOUTH);
+		}
+		else if(this.direction == DIRECTION.SOUTH){
+			setDirection(DIRECTION.EAST);
+		}
+		else if(this.direction == DIRECTION.EAST){
+			setDirection(DIRECTION.NORTH);
+		}
     	
     }
 
@@ -160,12 +194,8 @@ public class Matrix {
     }
 
     public void changePenPosition(PEN_POSITION penPosition) {
-        switch(penPosition) {
-        case UP:
-        	setPenPosition(penPosition.UP);break;
-        case DOWN:
-        	setPenPosition(penPosition.DOWN);break;
-        }
+        setPenPosition(penPosition);
+       
     }
 
 	
