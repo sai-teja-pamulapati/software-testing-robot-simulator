@@ -53,25 +53,25 @@ public class Matrix {
 
 	private void moveRight() {
         if (DIRECTION.NORTH.equals(this.direction)) {
-            setDirection(DIRECTION.EAST);
+            this.direction = DIRECTION.EAST;
         } else if (DIRECTION.EAST.equals(this.direction)) {
-            setDirection(DIRECTION.SOUTH);
+            this.direction = DIRECTION.SOUTH;
         } else if (DIRECTION.SOUTH.equals(this.direction)) {
-            setDirection(DIRECTION.WEST);
+            this.direction = DIRECTION.WEST;
         } else if (DIRECTION.WEST.equals(this.direction)) {
-            setDirection(DIRECTION.NORTH);
+            this.direction = DIRECTION.NORTH;
         }
     }
 	
     private void moveLeft() {
         if (DIRECTION.NORTH.equals(this.direction)) {
-            setDirection(DIRECTION.WEST);
+            this.direction = DIRECTION.WEST;
         } else if (DIRECTION.WEST.equals(this.direction)) {
-            setDirection(DIRECTION.SOUTH);
+            this.direction = DIRECTION.SOUTH;
         } else if (DIRECTION.SOUTH.equals(this.direction)) {
-            setDirection(DIRECTION.EAST);
+            this.direction = DIRECTION.EAST;
         } else if (DIRECTION.EAST.equals(this.direction)) {
-            setDirection(DIRECTION.NORTH);
+            this.direction = DIRECTION.NORTH;
         }
     }
 
@@ -140,7 +140,7 @@ public class Matrix {
     }
 
     public void changePenPosition(PEN_POSITION penPosition) {
-        setPenPosition(penPosition);
+        this.penPosition = penPosition;
     }
 
     public void initializeMatrix(int size) {
