@@ -7,8 +7,11 @@
 # BlueJ files
 *.ctxt
 
-Intellij files
+# Intellij files
 .idea
+
+# Mac OS files
+*.DS_Store
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
