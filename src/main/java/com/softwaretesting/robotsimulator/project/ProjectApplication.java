@@ -2,7 +2,6 @@ package com.softwaretesting.robotsimulator.project;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -40,7 +39,6 @@ public class ProjectApplication {
 				moveRobot(scanner);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
-				
 			}
 		}
 	}
@@ -48,60 +46,35 @@ public class ProjectApplication {
 	private static void moveRobot(Scanner scanner) {
 		System.out.print("Enter command: ");
 		String secondCommand = scanner.nextLine();
+		if (secondCommand == null) {
+			System.out.println("Invalid command!");
+			return;
+		}
+		secondCommand = secondCommand.trim();
 		String[] commandSplit = secondCommand.split("\\s+");
 		if (commandSplit.length < 1) {
-			System.out.println("Please enter a command");
+			System.out.println("Invalid command!");
 		}
 		switch (commandSplit[0]) {
-
-			case "c":
-			case "C":
-				matrix.printPosition();					
-				break;
-
-			case "d":
-			case "D":
-				matrix.changePenPosition(PEN_POSITION.DOWN);
-				break;
-
-			case "u":
-			case "U":
-				matrix.changePenPosition(PEN_POSITION.UP);
-				break;
-
-			case "m":
-			case "M":
+			case "c" , "C" -> matrix.printPosition();
+			case "d" , "D" -> matrix.changePenPosition(PEN_POSITION.DOWN);
+			case "u" , "U" -> matrix.changePenPosition(PEN_POSITION.UP);
+			case "m" , "M" -> {
 				String[] splitStrings = secondCommand.split("\\s+");
 				if (splitStrings.length == 2 && StringUtils.isNumeric(splitStrings[1])) {
 					matrix.move(Integer.valueOf(splitStrings[1]));
 				} else {
 					System.out.println("Invalid command!");
 				}
-				break;
-
-			case "r":
-			case "R":
-				matrix.rotate(ROTATION.RIGHT);
-				break;
-				
-			case "l":
-			case "L":
-				matrix.rotate(ROTATION.LEFT);
-				break;
-			case "p":
-			case "P":
-				matrix.show();
-				break;
-
-			case "q":
-			case "Q":
+			}
+			case "r" , "R" -> matrix.rotate(ROTATION.RIGHT);
+			case "l" , "L" -> matrix.rotate(ROTATION.LEFT);
+			case "p" , "P" -> matrix.show();
+			case "q" , "Q" -> {
 				System.out.println("Bye");
 				System.exit(0);
-
-
-			default:
-				System.out.println("Invalid command!");
-
+			}
+			default -> System.out.println("Invalid command!");
 		}
 	}
 
@@ -110,9 +83,10 @@ public class ProjectApplication {
 			System.out.print("Enter command: ");
 			String firstCommand = scanner.nextLine();
 			if (firstCommand == null) {
-				System.out.println("Please enter valid input!!");
+				System.out.println("Invalid command!");
 				continue;
 			}
+			firstCommand = firstCommand.trim();
 			if ("q".equalsIgnoreCase(firstCommand)) {
 				System.out.println("Bye");
 				System.exit(0);
@@ -128,27 +102,17 @@ public class ProjectApplication {
 		}
 	}
 
-
-
-
-
-
-
 	private static void initializeMatrix(Integer size) {
-
 
 		int[][] arrayOfArray = new int[size][size];
 		for (int[] array : arrayOfArray) {
 			Arrays.fill(array , 0);
 		}
-
 		matrix.setSize(size);
-		matrix.setxPosition(0);
-		matrix.setyPosition(0);
+		matrix.setXPosition(0);
+		matrix.setYPosition(0);
 		matrix.setPenPosition(PEN_POSITION.UP);
 		matrix.setDirection(DIRECTION.NORTH);
 		matrix.setMatrix(arrayOfArray);
-
 	}
-
 }

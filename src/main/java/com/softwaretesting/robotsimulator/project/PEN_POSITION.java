@@ -1,5 +1,8 @@
 package com.softwaretesting.robotsimulator.project;
 
+import lombok.Getter;
+
+@Getter
 public enum PEN_POSITION {
 
     UP("up"), DOWN("down");

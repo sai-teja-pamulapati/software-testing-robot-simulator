@@ -10,74 +10,29 @@ public class Matrix {
     private Integer xPosition;
     private Integer yPosition;
     private Integer size;
-
     private int[][] matrix = null;
-
-    public int[][] getMatrix() {
-        return matrix;
-    }
-
-    public DIRECTION getDirection() {
-		return direction;
-	}
-
-	public void setDirection(DIRECTION direction) {
-		this.direction = direction;
-	}
-
-	public PEN_POSITION getPenPosition() {
-		return penPosition;
-	}
-
-	public void setPenPosition(PEN_POSITION penPosition) {
-		this.penPosition = penPosition;
-	}
-
-	public Integer getxPosition() {
-		return xPosition;
-	}
-
-	public void setxPosition(Integer xPosition) {
-		this.xPosition = xPosition;
-	}
-
-	public Integer getyPosition() {
-		return yPosition;
-	}
-
-	public void setyPosition(Integer yPosition) {
-		this.yPosition = yPosition;
-	}
-
-	public Integer getSize() {
-		return size;
-	}
-
-	public void setSize(Integer size) {
-		this.size = size;
-	}
-
-	public void setMatrix(int[][] matrix) {
-        this.matrix = matrix;
-    }
 
     public void show() {
         for (int i = size - 1 ; i >= 0 ; i--) {
-            int[] subList = matrix[i];
-            System.out.print(i + "| ");
+            int[] subArray = matrix[i];
+            System.out.format("%3d| " , i);
             for (int j = 0 ; j < size ; j++) {
-                System.out.print(subList[j] + " ");
+                if (subArray[j] == 0) {
+                    System.out.print("   ");
+                } else if (subArray[j] == 1) {
+                    System.out.print("*  ");
+                }
             }
             System.out.println();
         }
         System.out.print("  ");
         for (int i = 0 ; i < size ; i++) {
-            System.out.print("--");
+            System.out.print("---");
         }
         System.out.println();
         System.out.print("   ");
         for (int i = 0 ; i < size ; i++) {
-            System.out.print(i + " ");
+            System.out.format("%3d" , i);
         }
         System.out.println();
     }
@@ -88,39 +43,29 @@ public class Matrix {
             case LEFT -> moveLeft();
         }
     }
-    
 
-		
 	private void moveRight() {
-		if(this.direction == DIRECTION.NORTH) {
-			setDirection(DIRECTION.EAST);
-		}
-		else if(this.direction == DIRECTION.EAST){
-			setDirection(DIRECTION.SOUTH);
-		}
-		else if(this.direction == DIRECTION.SOUTH){
-			setDirection(DIRECTION.WEST);
-		}
-		else if(this.direction == DIRECTION.WEST){
-			setDirection(DIRECTION.NORTH);
-		}
-    	
+        if (DIRECTION.NORTH.equals(this.direction)) {
+            setDirection(DIRECTION.EAST);
+        } else if (DIRECTION.EAST.equals(this.direction)) {
+            setDirection(DIRECTION.SOUTH);
+        } else if (DIRECTION.SOUTH.equals(this.direction)) {
+            setDirection(DIRECTION.WEST);
+        } else if (DIRECTION.WEST.equals(this.direction)) {
+            setDirection(DIRECTION.NORTH);
+        }
     }
 	
     private void moveLeft() {
-		if(this.direction == DIRECTION.NORTH) {
-			setDirection(DIRECTION.WEST);
-		}
-		else if(this.direction == DIRECTION.WEST){
-			setDirection(DIRECTION.SOUTH);
-		}
-		else if(this.direction == DIRECTION.SOUTH){
-			setDirection(DIRECTION.EAST);
-		}
-		else if(this.direction == DIRECTION.EAST){
-			setDirection(DIRECTION.NORTH);
-		}
-    	
+        if (DIRECTION.NORTH.equals(this.direction)) {
+            setDirection(DIRECTION.WEST);
+        } else if (DIRECTION.WEST.equals(this.direction)) {
+            setDirection(DIRECTION.SOUTH);
+        } else if (DIRECTION.SOUTH.equals(this.direction)) {
+            setDirection(DIRECTION.EAST);
+        } else if (DIRECTION.EAST.equals(this.direction)) {
+            setDirection(DIRECTION.NORTH);
+        }
     }
 
     public void move(Integer steps) {
@@ -176,21 +121,18 @@ public class Matrix {
         }
         if (PEN_POSITION.DOWN.equals(this.penPosition)) {
             for (int i = this.xPosition ; i <= this.xPosition + steps ; i++) {
-                this.matrix[yPosition][i] = 1;
+                this.matrix[this.yPosition][i] = 1;
             }
         }
         this.xPosition = this.xPosition + steps;
     }
 
     public void printPosition() {
-    	System.out.println("Position: (" + xPosition + ", " + yPosition + ") - Pen: " + (penPosition) + " - Facing: "
-				+ (direction));
+        System.out.println("Position: (" + this.xPosition + ", " + this.yPosition + ") - Pen: " + (this.penPosition.getPosition()) + " - Facing: "
+                + (this.direction.getDirection()));
     }
 
     public void changePenPosition(PEN_POSITION penPosition) {
         setPenPosition(penPosition);
     }
-
-	
-
 }

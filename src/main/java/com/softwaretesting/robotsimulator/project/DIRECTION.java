@@ -1,5 +1,8 @@
 package com.softwaretesting.robotsimulator.project;
 
+import lombok.Getter;
+
+@Getter
 public enum DIRECTION {
     EAST("east"), WEST("west"), NORTH("north"), SOUTH("south");
 
