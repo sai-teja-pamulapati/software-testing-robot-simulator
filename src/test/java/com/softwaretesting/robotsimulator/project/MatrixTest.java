@@ -13,11 +13,12 @@ class MatrixTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     Matrix matrix = null;
+    private static final Integer size = 10;
 
     @BeforeEach
     public void setUp() {
         matrix = new Matrix();
-        matrix.initializeMatrix(10);
+        matrix.initializeMatrix(size);
         System.setOut(new PrintStream(outputStreamCaptor));
     }
 
@@ -36,7 +37,10 @@ class MatrixTest {
 
     @Test
     public void moveEastPenUp() {
-        int[][] initialMatrix = this.matrix.getMatrix();
+        int[][] initialMatrix = new int[size][size];
+        for (int i = 0 ; i < size ; i++) {
+            System.arraycopy(this.matrix.getMatrix()[i] , 0 , initialMatrix[i] , 0 , size);
+        }
         matrix.setXPosition(1);
         matrix.setYPosition(2);
         matrix.setDirection(DIRECTION.EAST);
@@ -48,12 +52,15 @@ class MatrixTest {
         Assertions.assertEquals(2 , this.matrix.getYPosition());
         Assertions.assertEquals(DIRECTION.EAST , this.matrix.getDirection());
         Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
-        Assertions.assertEquals(initialMatrix , this.matrix.getMatrix());
+        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
     @Test
     public void moveWestPenUp() {
-        int[][] initialMatrix = this.matrix.getMatrix();
+        int[][] initialMatrix = new int[size][size];
+        for (int i = 0 ; i < size ; i++) {
+            System.arraycopy(this.matrix.getMatrix()[i] , 0 , initialMatrix[i] , 0 , size);
+        }
         matrix.setXPosition(7);
         matrix.setYPosition(4);
         matrix.setDirection(DIRECTION.WEST);
@@ -65,13 +72,16 @@ class MatrixTest {
         Assertions.assertEquals(4 , this.matrix.getYPosition());
         Assertions.assertEquals(DIRECTION.WEST , this.matrix.getDirection());
         Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
-        Assertions.assertEquals(initialMatrix , this.matrix.getMatrix());
+        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
 
     @Test
     public void moveNorthPenUp() {
-        int[][] initialMatrix = this.matrix.getMatrix();
+        int[][] initialMatrix = new int[size][size];
+        for (int i = 0 ; i < size ; i++) {
+            System.arraycopy(this.matrix.getMatrix()[i] , 0 , initialMatrix[i] , 0 , size);
+        }
         matrix.setXPosition(2);
         matrix.setYPosition(4);
         matrix.setDirection(DIRECTION.NORTH);
@@ -83,13 +93,16 @@ class MatrixTest {
         Assertions.assertEquals(8 , this.matrix.getYPosition());
         Assertions.assertEquals(DIRECTION.NORTH , this.matrix.getDirection());
         Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
-        Assertions.assertEquals(initialMatrix , this.matrix.getMatrix());
+        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
 
     @Test
     public void moveSouthPenUp() {
-        int[][] initialMatrix = this.matrix.getMatrix();
+        int[][] initialMatrix = new int[size][size];
+        for (int i = 0 ; i < size ; i++) {
+            System.arraycopy(this.matrix.getMatrix()[i] , 0 , initialMatrix[i] , 0 , size);
+        }
         matrix.setXPosition(1);
         matrix.setYPosition(8);
         matrix.setDirection(DIRECTION.SOUTH);
@@ -101,12 +114,97 @@ class MatrixTest {
         Assertions.assertEquals(1 , this.matrix.getYPosition());
         Assertions.assertEquals(DIRECTION.SOUTH , this.matrix.getDirection());
         Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
-        Assertions.assertEquals(initialMatrix , this.matrix.getMatrix());
+        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
+    }
+
+
+    @Test
+    public void moveEastPenDown() {
+        int[][] initialMatrix = new int[size][size];
+        for (int i = 0 ; i < size ; i++) {
+            System.arraycopy(this.matrix.getMatrix()[i] , 0 , initialMatrix[i] , 0 , size);
+        }
+        matrix.setXPosition(1);
+        matrix.setYPosition(2);
+        matrix.setDirection(DIRECTION.EAST);
+        matrix.setPenPosition(PEN_POSITION.DOWN);
+
+        this.matrix.move(4);
+
+        Assertions.assertEquals(5 , this.matrix.getXPosition());
+        Assertions.assertEquals(2 , this.matrix.getYPosition());
+        Assertions.assertEquals(DIRECTION.EAST , this.matrix.getDirection());
+        Assertions.assertEquals(PEN_POSITION.DOWN , this.matrix.getPenPosition());
+        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
+    }
+
+    @Test
+    public void moveWestPenDown() {
+        int[][] initialMatrix = new int[size][size];
+        for (int i = 0 ; i < size ; i++) {
+            System.arraycopy(this.matrix.getMatrix()[i] , 0 , initialMatrix[i] , 0 , size);
+        }
+        matrix.setXPosition(7);
+        matrix.setYPosition(4);
+        matrix.setDirection(DIRECTION.WEST);
+        matrix.setPenPosition(PEN_POSITION.UP);
+
+        this.matrix.move(5);
+
+        Assertions.assertEquals(2 , this.matrix.getXPosition());
+        Assertions.assertEquals(4 , this.matrix.getYPosition());
+        Assertions.assertEquals(DIRECTION.WEST , this.matrix.getDirection());
+        Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
+        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
+    }
+
+
+    @Test
+    public void moveNorthPenDown() {
+        int[][] initialMatrix = new int[size][size];
+        for (int i = 0 ; i < size ; i++) {
+            System.arraycopy(this.matrix.getMatrix()[i] , 0 , initialMatrix[i] , 0 , size);
+        }
+        matrix.setXPosition(2);
+        matrix.setYPosition(4);
+        matrix.setDirection(DIRECTION.NORTH);
+        matrix.setPenPosition(PEN_POSITION.UP);
+
+        this.matrix.move(4);
+
+        Assertions.assertEquals(2 , this.matrix.getXPosition());
+        Assertions.assertEquals(8 , this.matrix.getYPosition());
+        Assertions.assertEquals(DIRECTION.NORTH , this.matrix.getDirection());
+        Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
+        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
+    }
+
+    @Test
+    public void moveSouthPenDown() {
+        int[][] initialMatrix = new int[size][size];
+        for (int i = 0 ; i < size ; i++) {
+            System.arraycopy(this.matrix.getMatrix()[i] , 0 , initialMatrix[i] , 0 , size);
+        }
+        matrix.setXPosition(1);
+        matrix.setYPosition(8);
+        matrix.setDirection(DIRECTION.SOUTH);
+        matrix.setPenPosition(PEN_POSITION.UP);
+
+        this.matrix.move(7);
+
+        Assertions.assertEquals(1 , this.matrix.getXPosition());
+        Assertions.assertEquals(1 , this.matrix.getYPosition());
+        Assertions.assertEquals(DIRECTION.SOUTH , this.matrix.getDirection());
+        Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
+        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
     @Test
     public void moveEastPenUpThrowException() {
-        int[][] initialMatrix = this.matrix.getMatrix();
+        int[][] initialMatrix = new int[size][size];
+        for (int i = 0 ; i < size ; i++) {
+            System.arraycopy(this.matrix.getMatrix()[i] , 0 , initialMatrix[i] , 0 , size);
+        }
         matrix.setXPosition(1);
         matrix.setYPosition(2);
         matrix.setDirection(DIRECTION.EAST);
@@ -119,12 +217,15 @@ class MatrixTest {
         Assertions.assertEquals(2 , this.matrix.getYPosition());
         Assertions.assertEquals(DIRECTION.EAST , this.matrix.getDirection());
         Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
-        Assertions.assertEquals(initialMatrix , this.matrix.getMatrix());
+        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
     @Test
     public void moveWestPenUpThrowException() {
-        int[][] initialMatrix = this.matrix.getMatrix();
+        int[][] initialMatrix = new int[size][size];
+        for (int i = 0 ; i < size ; i++) {
+            System.arraycopy(this.matrix.getMatrix()[i] , 0 , initialMatrix[i] , 0 , size);
+        }
         matrix.setXPosition(7);
         matrix.setYPosition(4);
         matrix.setDirection(DIRECTION.WEST);
@@ -137,13 +238,16 @@ class MatrixTest {
         Assertions.assertEquals(4 , this.matrix.getYPosition());
         Assertions.assertEquals(DIRECTION.WEST , this.matrix.getDirection());
         Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
-        Assertions.assertEquals(initialMatrix , this.matrix.getMatrix());
+        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
 
     @Test
     public void moveNorthPenUpThrowException() {
-        int[][] initialMatrix = this.matrix.getMatrix();
+        int[][] initialMatrix = new int[size][size];
+        for (int i = 0 ; i < size ; i++) {
+            System.arraycopy(this.matrix.getMatrix()[i] , 0 , initialMatrix[i] , 0 , size);
+        }
         matrix.setXPosition(2);
         matrix.setYPosition(4);
         matrix.setDirection(DIRECTION.NORTH);
@@ -157,13 +261,16 @@ class MatrixTest {
         Assertions.assertEquals(4 , this.matrix.getYPosition());
         Assertions.assertEquals(DIRECTION.NORTH , this.matrix.getDirection());
         Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
-        Assertions.assertEquals(initialMatrix , this.matrix.getMatrix());
+        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
 
     @Test
     public void moveSouthPenUpThrowException() {
-        int[][] initialMatrix = this.matrix.getMatrix();
+        int[][] initialMatrix = new int[size][size];
+        for (int i = 0 ; i < size ; i++) {
+            System.arraycopy(this.matrix.getMatrix()[i] , 0 , initialMatrix[i] , 0 , size);
+        }
         matrix.setXPosition(1);
         matrix.setYPosition(1);
         matrix.setDirection(DIRECTION.SOUTH);
@@ -177,7 +284,7 @@ class MatrixTest {
         Assertions.assertEquals(1 , this.matrix.getYPosition());
         Assertions.assertEquals(DIRECTION.SOUTH , this.matrix.getDirection());
         Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
-        Assertions.assertEquals(initialMatrix , this.matrix.getMatrix());
+        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
     @Test
