@@ -2,7 +2,6 @@ package com.softwaretesting.robotsimulator.project;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class ProjectApplication {
@@ -93,7 +92,7 @@ public class ProjectApplication {
 			}
 			String[] splitStrings = firstCommand.split("\\s+");
 			if (splitStrings.length == 2 && "i".equalsIgnoreCase(splitStrings[0]) && StringUtils.isNumeric(splitStrings[1])) {
-				initializeMatrix(Integer.parseInt(splitStrings[1]));
+				matrix.initializeMatrix(Integer.parseInt(splitStrings[1]));
 				break;
 			} else {
 				System.out.println("Please Initialize the system first");
@@ -104,15 +103,5 @@ public class ProjectApplication {
 
 	private static void initializeMatrix(Integer size) {
 
-		int[][] arrayOfArray = new int[size][size];
-		for (int[] array : arrayOfArray) {
-			Arrays.fill(array , 0);
-		}
-		matrix.setSize(size);
-		matrix.setXPosition(0);
-		matrix.setYPosition(0);
-		matrix.setPenPosition(PEN_POSITION.UP);
-		matrix.setDirection(DIRECTION.NORTH);
-		matrix.setMatrix(arrayOfArray);
 	}
 }

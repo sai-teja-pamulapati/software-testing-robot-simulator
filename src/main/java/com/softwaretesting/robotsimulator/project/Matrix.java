@@ -2,6 +2,8 @@ package com.softwaretesting.robotsimulator.project;
 
 import lombok.Data;
 
+import java.util.Arrays;
+
 @Data
 public class Matrix {
 
@@ -134,5 +136,18 @@ public class Matrix {
 
     public void changePenPosition(PEN_POSITION penPosition) {
         setPenPosition(penPosition);
+    }
+
+    public void initializeMatrix(int size) {
+        int[][] arrayOfArray = new int[size][size];
+        for (int[] array : arrayOfArray) {
+            Arrays.fill(array , 0);
+        }
+        this.size = size;
+        this.xPosition = 0;
+        this.yPosition = 0;
+        this.penPosition = PEN_POSITION.UP;
+        this.direction = DIRECTION.NORTH;
+        this.matrix = arrayOfArray;
     }
 }
