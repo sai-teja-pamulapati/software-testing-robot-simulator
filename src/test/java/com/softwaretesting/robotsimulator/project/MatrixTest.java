@@ -16,9 +16,8 @@ class MatrixTest {
 
     @BeforeEach
     public void setUp() {
-
         matrix = new Matrix();
-        matrix.initializeMatrix(8);
+        matrix.initializeMatrix(10);
         System.setOut(new PrintStream(outputStreamCaptor));
     }
 
@@ -36,7 +35,20 @@ class MatrixTest {
     }
 
     @Test
-    public void move() {
+    public void moveEastPenUp() {
+        int[][] initialMatrix = this.matrix.getMatrix();
+        matrix.setXPosition(1);
+        matrix.setYPosition(2);
+        matrix.setDirection(DIRECTION.EAST);
+        matrix.setPenPosition(PEN_POSITION.UP);
+
+        this.matrix.move(4);
+
+        Assertions.assertEquals(5 , this.matrix.getXPosition());
+        Assertions.assertEquals(2 , this.matrix.getYPosition());
+        Assertions.assertEquals(DIRECTION.EAST , this.matrix.getDirection());
+        Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
+        Assertions.assertEquals(initialMatrix , this.matrix.getMatrix());
     }
 
     @Test

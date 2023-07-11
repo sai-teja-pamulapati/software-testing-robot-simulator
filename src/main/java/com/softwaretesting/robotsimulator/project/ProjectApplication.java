@@ -101,7 +101,4 @@ public class ProjectApplication {
 		}
 	}
 
-	private static void initializeMatrix(Integer size) {
-
-	}
 }
