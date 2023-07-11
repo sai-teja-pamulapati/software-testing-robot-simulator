@@ -135,7 +135,19 @@ class MatrixTest {
         Assertions.assertEquals(2 , this.matrix.getYPosition());
         Assertions.assertEquals(DIRECTION.EAST , this.matrix.getDirection());
         Assertions.assertEquals(PEN_POSITION.DOWN , this.matrix.getPenPosition());
-        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
+        compareAndAssertMatrixPathsHorizontal(1 , 5 , this.matrix.getYPosition() , initialMatrix , this.matrix.getMatrix());
+    }
+
+    private void compareAndAssertMatrixPathsHorizontal(int startingRobotXPosition , int endingRobotXPosition , int robotYPosition , int[][] initialMatrix , int[][] currentMatrix) {
+        for (int i = 0 ; i < size ; i++) {
+            for (int j = 0 ; j < size ; j++) {
+                if (i == robotYPosition && j >= startingRobotXPosition && j <= endingRobotXPosition) {
+                    Assertions.assertEquals(1 , currentMatrix[i][j]);
+                } else {
+                    Assertions.assertEquals(initialMatrix[i][j] , currentMatrix[i][j]);
+                }
+            }
+        }
     }
 
     @Test
@@ -147,17 +159,17 @@ class MatrixTest {
         matrix.setXPosition(7);
         matrix.setYPosition(4);
         matrix.setDirection(DIRECTION.WEST);
-        matrix.setPenPosition(PEN_POSITION.UP);
+        matrix.setPenPosition(PEN_POSITION.DOWN);
 
         this.matrix.move(5);
 
         Assertions.assertEquals(2 , this.matrix.getXPosition());
         Assertions.assertEquals(4 , this.matrix.getYPosition());
         Assertions.assertEquals(DIRECTION.WEST , this.matrix.getDirection());
-        Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
-        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
-    }
+        Assertions.assertEquals(PEN_POSITION.DOWN , this.matrix.getPenPosition());
+        compareAndAssertMatrixPathsHorizontal(2 , 7 , this.matrix.getYPosition() , initialMatrix , this.matrix.getMatrix());
 
+    }
 
     @Test
     public void moveNorthPenDown() {
@@ -168,16 +180,31 @@ class MatrixTest {
         matrix.setXPosition(2);
         matrix.setYPosition(4);
         matrix.setDirection(DIRECTION.NORTH);
-        matrix.setPenPosition(PEN_POSITION.UP);
+        matrix.setPenPosition(PEN_POSITION.DOWN);
 
         this.matrix.move(4);
 
         Assertions.assertEquals(2 , this.matrix.getXPosition());
         Assertions.assertEquals(8 , this.matrix.getYPosition());
         Assertions.assertEquals(DIRECTION.NORTH , this.matrix.getDirection());
-        Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
-        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
+        Assertions.assertEquals(PEN_POSITION.DOWN , this.matrix.getPenPosition());
+        compareAndAssertMatrixPathsVertical(4 , 8 , this.matrix.getXPosition() , initialMatrix , this.matrix.getMatrix());
+
     }
+
+
+    private void compareAndAssertMatrixPathsVertical(int startingRobotYPosition , int endingRobotYPosition , int robotXPosition , int[][] initialMatrix , int[][] currentMatrix) {
+        for (int i = 0 ; i < size ; i++) {
+            for (int j = 0 ; j < size ; j++) {
+                if (i >= startingRobotYPosition && i <= endingRobotYPosition && j == robotXPosition) {
+                    Assertions.assertEquals(1 , currentMatrix[i][j]);
+                } else {
+                    Assertions.assertEquals(initialMatrix[i][j] , currentMatrix[i][j]);
+                }
+            }
+        }
+    }
+
 
     @Test
     public void moveSouthPenDown() {
@@ -188,15 +215,16 @@ class MatrixTest {
         matrix.setXPosition(1);
         matrix.setYPosition(8);
         matrix.setDirection(DIRECTION.SOUTH);
-        matrix.setPenPosition(PEN_POSITION.UP);
+        matrix.setPenPosition(PEN_POSITION.DOWN);
 
         this.matrix.move(7);
 
         Assertions.assertEquals(1 , this.matrix.getXPosition());
         Assertions.assertEquals(1 , this.matrix.getYPosition());
         Assertions.assertEquals(DIRECTION.SOUTH , this.matrix.getDirection());
-        Assertions.assertEquals(PEN_POSITION.UP , this.matrix.getPenPosition());
-        Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
+        Assertions.assertEquals(PEN_POSITION.DOWN , this.matrix.getPenPosition());
+        compareAndAssertMatrixPathsVertical(1 , 8 , this.matrix.getXPosition() , initialMatrix , this.matrix.getMatrix());
+
     }
 
     @Test
