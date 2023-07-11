@@ -51,8 +51,22 @@ class MatrixTest {
         String expectedOutPut = "Position: (6, 3) - Pen: down - Facing: south";
         Assertions.assertEquals(expectedOutPut , outputStreamCaptor.toString()
                 .trim());
-
     }
+
+    @Test
+    public void printPosition2() {
+        matrix.setYPosition(4);
+        matrix.setXPosition(8);
+        matrix.setDirection(DIRECTION.EAST);
+        matrix.setPenPosition(PEN_POSITION.UP);
+
+        matrix.printPosition();
+
+        String expectedOutPut = "Position: (8, 4) - Pen: up - Facing: east";
+        Assertions.assertEquals(expectedOutPut , outputStreamCaptor.toString()
+                .trim());
+    }
+
 
     @Test
     public void changePenPosition() {

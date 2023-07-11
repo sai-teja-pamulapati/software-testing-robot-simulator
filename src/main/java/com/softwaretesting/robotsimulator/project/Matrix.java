@@ -1,16 +1,21 @@
 package com.softwaretesting.robotsimulator.project;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 import java.util.Arrays;
 
 @Data
 public class Matrix {
 
+    @Setter(AccessLevel.NONE)
+    private Integer xPosition;
+    @Setter(AccessLevel.NONE)
+    private Integer yPosition;
+
     private DIRECTION direction;
     private PEN_POSITION penPosition;
-    private Integer xPosition;
-    private Integer yPosition;
     private Integer size;
     private int[][] matrix = null;
 
@@ -150,4 +155,19 @@ public class Matrix {
         this.direction = DIRECTION.NORTH;
         this.matrix = arrayOfArray;
     }
+
+    public void setXPosition(Integer xPosition) {
+        if (xPosition < 0 || xPosition > size) {
+            throw new IllegalArgumentException("Illegal value for X position.");
+        }
+        this.xPosition = xPosition;
+    }
+
+    public void setYPosition(Integer yPosition) {
+        if (yPosition < 0 || yPosition > size) {
+            throw new IllegalArgumentException("Illegal value for Y position.");
+        }
+        this.yPosition = yPosition;
+    }
+
 }
