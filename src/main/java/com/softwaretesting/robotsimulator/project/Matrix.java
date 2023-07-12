@@ -1,29 +1,21 @@
 package com.softwaretesting.robotsimulator.project;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
-
 import java.util.Arrays;
 
-@Data
 public class Matrix {
 
-    @Setter(AccessLevel.NONE)
     private Integer xPosition;
-    @Setter(AccessLevel.NONE)
     private Integer yPosition;
-
     private DIRECTION direction;
     private PEN_POSITION penPosition;
     private Integer size;
     private int[][] matrix = null;
 
     public void show() {
-        for (int i = size - 1 ; i >= 0 ; i--) {
-            int[] subArray = matrix[i];
+        for (int i = getSize() - 1 ; i >= 0 ; i--) {
+            int[] subArray = getMatrix()[i];
             System.out.format("%3d| " , i);
-            for (int j = 0 ; j < size ; j++) {
+            for (int j = 0 ; j < getSize() ; j++) {
                 if (subArray[j] == 0) {
                     System.out.print("   ");
                 } else if (subArray[j] == 1) {
@@ -33,12 +25,12 @@ public class Matrix {
             System.out.println();
         }
         System.out.print("  ");
-        for (int i = 0 ; i < size ; i++) {
+        for (int i = 0 ; i < getSize() ; i++) {
             System.out.print("---");
         }
         System.out.println();
         System.out.print("   ");
-        for (int i = 0 ; i < size ; i++) {
+        for (int i = 0 ; i < getSize() ; i++) {
             System.out.format("%3d" , i);
         }
         System.out.println();
@@ -52,31 +44,31 @@ public class Matrix {
     }
 
 	private void moveRight() {
-        if (DIRECTION.NORTH.equals(this.direction)) {
-            this.direction = DIRECTION.EAST;
-        } else if (DIRECTION.EAST.equals(this.direction)) {
-            this.direction = DIRECTION.SOUTH;
-        } else if (DIRECTION.SOUTH.equals(this.direction)) {
-            this.direction = DIRECTION.WEST;
-        } else if (DIRECTION.WEST.equals(this.direction)) {
-            this.direction = DIRECTION.NORTH;
+        if (DIRECTION.NORTH.equals(getDirection())) {
+            setDirection(DIRECTION.EAST);
+        } else if (DIRECTION.EAST.equals(getDirection())) {
+            setDirection(DIRECTION.SOUTH);
+        } else if (DIRECTION.SOUTH.equals(getDirection())) {
+            setDirection(DIRECTION.WEST);
+        } else if (DIRECTION.WEST.equals(getDirection())) {
+            setDirection(DIRECTION.NORTH);
         }
     }
 	
     private void moveLeft() {
-        if (DIRECTION.NORTH.equals(this.direction)) {
-            this.direction = DIRECTION.WEST;
-        } else if (DIRECTION.WEST.equals(this.direction)) {
-            this.direction = DIRECTION.SOUTH;
-        } else if (DIRECTION.SOUTH.equals(this.direction)) {
-            this.direction = DIRECTION.EAST;
-        } else if (DIRECTION.EAST.equals(this.direction)) {
-            this.direction = DIRECTION.NORTH;
+        if (DIRECTION.NORTH.equals(getDirection())) {
+            setDirection(DIRECTION.WEST);
+        } else if (DIRECTION.WEST.equals(getDirection())) {
+            setDirection(DIRECTION.SOUTH);
+        } else if (DIRECTION.SOUTH.equals(getDirection())) {
+            setDirection(DIRECTION.EAST);
+        } else if (DIRECTION.EAST.equals(getDirection())) {
+            setDirection(DIRECTION.NORTH);
         }
     }
 
     public void move(Integer steps) {
-        switch (this.direction) {
+        switch (getDirection()) {
             case EAST -> moveEast(steps);
             case WEST -> moveWest(steps);
             case NORTH -> moveNorth(steps);
@@ -85,62 +77,60 @@ public class Matrix {
     }
 
     private void moveSouth(Integer steps) {
-        if (this.yPosition - steps < 0) {
+        if (getYPosition() - steps < 0) {
             throw new IllegalArgumentException("Robot exceeding the matrix boundaries");
         }
-        if (PEN_POSITION.DOWN.equals(this.penPosition)) {
-            for (int i = this.yPosition ; i >= this.yPosition - steps ; i--) {
-                this.matrix[i][this.xPosition] = 1;
+        if (PEN_POSITION.DOWN.equals(getPenPosition())) {
+            for (int i = getYPosition() ; i >= getYPosition() - steps ; i--) {
+                getMatrix()[i][getXPosition()] = 1;
             }
         }
-        this.yPosition = this.yPosition - steps;
+        setYPosition(getYPosition() - steps);
     }
 
     private void moveNorth(Integer steps) {
-        if (this.yPosition + steps >= size) {
+        if (getYPosition() + steps >= getSize()) {
             throw new IllegalArgumentException("Robot exceeding the matrix boundaries");
         }
-        if (PEN_POSITION.DOWN.equals(this.penPosition)) {
-            for (int i = this.yPosition ; i <= this.yPosition + steps ; i++) {
-                this.matrix[i][this.xPosition] = 1;
+        if (PEN_POSITION.DOWN.equals(getPenPosition())) {
+            for (int i = getYPosition() ; i <= getYPosition() + steps ; i++) {
+                getMatrix()[i][getXPosition()] = 1;
             }
         }
-        this.yPosition = this.yPosition + steps;
+        setYPosition(getYPosition() + steps);
 
     }
 
     private void moveWest(Integer steps) {
-        if (this.xPosition - steps < 0) {
+        if (getXPosition() - steps < 0) {
             throw new IllegalArgumentException("Robot exceeding the matrix boundaries");
         }
-        if (PEN_POSITION.DOWN.equals(this.penPosition)) {
-            for (int i = this.xPosition ; i >= this.xPosition - steps ; i--) {
-                this.matrix[this.yPosition][i] = 1;
+        if (PEN_POSITION.DOWN.equals(getPenPosition())) {
+            for (int i = getXPosition() ; i >= getXPosition() - steps ; i--) {
+                getMatrix()[getYPosition()][i] = 1;
             }
         }
-        this.xPosition = this.xPosition - steps;
-
+        setXPosition(getXPosition() - steps);
     }
 
     private void moveEast(Integer steps) {
-        if (this.xPosition + steps >= size) {
+        if (getXPosition() + steps >= getSize()) {
             throw new IllegalArgumentException("Robot exceeding the matrix boundaries");
         }
-        if (PEN_POSITION.DOWN.equals(this.penPosition)) {
-            for (int i = this.xPosition ; i <= this.xPosition + steps ; i++) {
-                this.matrix[this.yPosition][i] = 1;
+        if (PEN_POSITION.DOWN.equals(getPenPosition())) {
+            for (int i = getXPosition() ; i <= getXPosition() + steps ; i++) {
+                getMatrix()[getYPosition()][i] = 1;
             }
         }
-        this.xPosition = this.xPosition + steps;
+        setXPosition(getXPosition() + steps);
     }
 
     public void printPosition() {
-        System.out.println("Position: (" + this.xPosition + ", " + this.yPosition + ") - Pen: " + (this.penPosition.getPosition()) + " - Facing: "
-                + (this.direction.getDirection()));
+        System.out.printf("Position: (%d, %d) - Pen: %s - Facing: %s%n" , getXPosition() , getYPosition() , getPenPosition().getPosition() , getDirection().getDirection());
     }
 
     public void changePenPosition(PEN_POSITION penPosition) {
-        this.penPosition = penPosition;
+        setPenPosition(penPosition);
     }
 
     public void initializeMatrix(int size) {
@@ -148,23 +138,63 @@ public class Matrix {
         for (int[] array : arrayOfArray) {
             Arrays.fill(array , 0);
         }
+        setSize(size);
+        setXPosition(0);
+        setYPosition(0);
+        setPenPosition(PEN_POSITION.UP);
+        setDirection(DIRECTION.NORTH);
+        setMatrix(arrayOfArray);
+    }
+
+    public DIRECTION getDirection() {
+        return this.direction;
+    }
+
+    public void setDirection(DIRECTION direction) {
+        this.direction = direction;
+    }
+
+    public PEN_POSITION getPenPosition() {
+        return this.penPosition;
+    }
+
+    public void setPenPosition(PEN_POSITION penPosition) {
+        this.penPosition = penPosition;
+    }
+
+    public Integer getSize() {
+        return this.size;
+    }
+
+    public void setSize(Integer size) {
         this.size = size;
-        this.xPosition = 0;
-        this.yPosition = 0;
-        this.penPosition = PEN_POSITION.UP;
-        this.direction = DIRECTION.NORTH;
-        this.matrix = arrayOfArray;
+    }
+
+    public int[][] getMatrix() {
+        return this.matrix;
+    }
+
+    public void setMatrix(int[][] matrix) {
+        this.matrix = matrix;
+    }
+
+    public Integer getXPosition() {
+        return this.xPosition;
     }
 
     public void setXPosition(Integer xPosition) {
-        if (xPosition < 0 || xPosition > size) {
+        if (xPosition < 0 || xPosition > this.size) {
             throw new IllegalArgumentException("Illegal value for X position.");
         }
         this.xPosition = xPosition;
     }
 
+    public Integer getYPosition() {
+        return this.yPosition;
+    }
+
     public void setYPosition(Integer yPosition) {
-        if (yPosition < 0 || yPosition > size) {
+        if (yPosition < 0 || yPosition > this.size) {
             throw new IllegalArgumentException("Illegal value for Y position.");
         }
         this.yPosition = yPosition;
