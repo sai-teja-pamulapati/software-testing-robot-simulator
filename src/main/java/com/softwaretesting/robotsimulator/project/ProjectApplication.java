@@ -8,10 +8,10 @@ public class ProjectApplication {
 
 	private static Matrix matrix = new Matrix();
 
+	private static Scanner scanner = new Scanner(System.in);
+
 	public static void main(String[] args) {
 
-
-		Scanner scanner = new Scanner(System.in);
 		System.out.print("""
 				Welcome to RobotSimulator!!!
 				Use below commands!!!
@@ -27,24 +27,28 @@ public class ProjectApplication {
 				                  is back to [0, 0], pen up and facing north. x size of the array, an integer greater than zero\r
 				""");
 
-		initializeSystem(scanner);
-		execute(scanner);
+		initializeSystem();
+		execute();
 	}
 
-	private static void execute(Scanner scanner) {
+	private static void execute() {
 
 		while (true) {
 			try {
-				moveRobot(scanner);
+				commandTheRobot();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
 		}
 	}
 
-	private static void moveRobot(Scanner scanner) {
+	private static void commandTheRobot() {
 		System.out.print("Enter command: ");
 		String secondCommand = scanner.nextLine();
+		processCommand(secondCommand);
+	}
+
+	public static void processCommand(String secondCommand) {
 		if (secondCommand == null) {
 			System.out.println("Invalid command!");
 			return;
@@ -77,10 +81,14 @@ public class ProjectApplication {
 		}
 	}
 
-	private static void initializeSystem(Scanner scanner) {
+	public static void initializeSystem() {
+		System.out.print("Enter command: ");
+		String firstCommand = scanner.nextLine();
+		processFirstCommand(firstCommand);
+	}
+
+	private static void processFirstCommand(String firstCommand) {
 		while (true) {
-			System.out.print("Enter command: ");
-			String firstCommand = scanner.nextLine();
 			if (firstCommand == null) {
 				System.out.println("Invalid command!");
 				continue;
@@ -101,4 +109,7 @@ public class ProjectApplication {
 		}
 	}
 
+	public static Matrix getMatrix() {
+		return matrix;
+	}
 }
