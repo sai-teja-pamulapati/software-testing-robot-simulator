@@ -485,6 +485,12 @@ class MatrixTest {
 
 
     @Test
+    
     public void changePenPosition() {
+        PEN_POSITION upPosition = PEN_POSITION.UP;
+        PEN_POSITION downPosition = PEN_POSITION.DOWN;
+
+        Assertions.assertEquals("up", upPosition.getPosition());
+        Assertions.assertEquals("down", downPosition.getPosition());
     }
 }
