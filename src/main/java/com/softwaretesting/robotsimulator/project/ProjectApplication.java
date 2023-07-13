@@ -45,10 +45,10 @@ public class ProjectApplication {
 	private static void commandTheRobot() {
 		System.out.print("Enter command: ");
 		String secondCommand = scanner.nextLine();
-		processCommand(secondCommand);
+		processCommands(secondCommand);
 	}
 
-	public static void processCommand(String secondCommand) {
+	public static void processCommands(String secondCommand) {
 		if (secondCommand == null) {
 			System.out.println("Invalid command!");
 			return;
@@ -81,13 +81,13 @@ public class ProjectApplication {
 		}
 	}
 
-	public static void initializeSystem() {
+	private static void initializeSystem() {
 		System.out.print("Enter command: ");
 		String firstCommand = scanner.nextLine();
 		processFirstCommand(firstCommand);
 	}
 
-	private static void processFirstCommand(String firstCommand) {
+	public static void processFirstCommand(String firstCommand) {
 		while (true) {
 			if (firstCommand == null) {
 				System.out.println("Invalid command!");

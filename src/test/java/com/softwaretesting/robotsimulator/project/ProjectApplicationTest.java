@@ -24,10 +24,10 @@ class ProjectApplicationTest {
     }
 
     @Test
-    void processCommand() {
+    void processCommands() {
     }
 
     @Test
-    void initializeSystem() {
+    void processFirstCommand() {
     }
 }
