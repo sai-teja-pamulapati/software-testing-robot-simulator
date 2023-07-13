@@ -50,13 +50,12 @@ public class ProjectApplication {
 
 	public static void processCommands(String secondCommand) {
 		if (secondCommand == null) {
-			System.out.println("Invalid command!");
-			return;
+			throw new IllegalArgumentException("Invalid command!");
 		}
 		secondCommand = secondCommand.trim();
 		String[] commandSplit = secondCommand.split("\\s+");
 		if (commandSplit.length < 1) {
-			System.out.println("Invalid command!");
+			throw new IllegalArgumentException("Invalid command!");
 		}
 		switch (commandSplit[0]) {
 			case "c" , "C" -> matrix.printPosition();
@@ -77,35 +76,40 @@ public class ProjectApplication {
 				System.out.println("Bye");
 				System.exit(0);
 			}
-			default -> System.out.println("Invalid command!");
+			default -> throw new IllegalArgumentException("Invalid command!");
 		}
 	}
 
 	private static void initializeSystem() {
-		System.out.print("Enter command: ");
-		String firstCommand = scanner.nextLine();
-		processFirstCommand(firstCommand);
+		while (true) {
+			System.out.print("Enter command: ");
+			String firstCommand = scanner.nextLine();
+			try {
+				boolean isSystemInitialized = processFirstCommand(firstCommand);
+				if (isSystemInitialized) {
+					break;
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 
-	public static void processFirstCommand(String firstCommand) {
-		while (true) {
-			if (firstCommand == null) {
-				System.out.println("Invalid command!");
-				continue;
-			}
-			firstCommand = firstCommand.trim();
-			if ("q".equalsIgnoreCase(firstCommand)) {
-				System.out.println("Bye");
-				System.exit(0);
-			}
-			String[] splitStrings = firstCommand.split("\\s+");
-			if (splitStrings.length == 2 && "i".equalsIgnoreCase(splitStrings[0]) && StringUtils.isNumeric(splitStrings[1])) {
-				matrix.initializeMatrix(Integer.parseInt(splitStrings[1]));
-				break;
-			} else {
-				System.out.println("Please Initialize the system first");
-
-			}
+	public static boolean processFirstCommand(String firstCommand) {
+		if (firstCommand == null) {
+			throw new IllegalArgumentException("Invalid command!");
+		}
+		firstCommand = firstCommand.trim();
+		if ("q".equalsIgnoreCase(firstCommand)) {
+			System.out.println("Bye");
+			System.exit(0);
+		}
+		String[] splitStrings = firstCommand.split("\\s+");
+		if (splitStrings.length == 2 && "i".equalsIgnoreCase(splitStrings[0]) && StringUtils.isNumeric(splitStrings[1])) {
+			matrix.initializeMatrix(Integer.parseInt(splitStrings[1]));
+			return true;
+		} else {
+			throw new IllegalArgumentException("Please Initialize the system first");
 		}
 	}
 
