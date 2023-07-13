@@ -1,12 +1,14 @@
 package com.softwaretesting.robotsimulator.project;
 
 import org.junit.jupiter.api.AfterEach;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
 
 class MatrixTest {
 
@@ -32,7 +34,59 @@ class MatrixTest {
     }
 
     @Test
-    public void rotate() {
+    public void rotateRightdirectionNorth() {
+    	matrix.setDirection(DIRECTION.NORTH);    	
+    	this.matrix.rotate(ROTATION.RIGHT);    	
+    	Assertions.assertEquals(DIRECTION.EAST , this.matrix.getDirection());
+    }
+    
+    @Test
+    public void rotateRightdirectionEast() {
+    	matrix.setDirection(DIRECTION.EAST);    	
+    	this.matrix.rotate(ROTATION.RIGHT);    	
+    	Assertions.assertEquals(DIRECTION.SOUTH , this.matrix.getDirection());
+    }
+    
+    @Test
+    public void rotateRightdirectionSouth() {
+    	matrix.setDirection(DIRECTION.SOUTH);    	
+    	this.matrix.rotate(ROTATION.RIGHT);    	
+    	Assertions.assertEquals(DIRECTION.WEST , this.matrix.getDirection());
+    }
+    
+    @Test
+    public void rotateRightdirectionWest() {
+    	matrix.setDirection(DIRECTION.WEST);    	
+    	this.matrix.rotate(ROTATION.RIGHT);    	
+    	Assertions.assertEquals(DIRECTION.NORTH , this.matrix.getDirection());
+    }
+    
+    @Test
+    public void rotateLeftdirectionNorth() {
+    	matrix.setDirection(DIRECTION.NORTH);    	
+    	this.matrix.rotate(ROTATION.LEFT);    	
+    	Assertions.assertEquals(DIRECTION.WEST , this.matrix.getDirection());
+    }
+    
+    @Test
+    public void rotateLeftdirectionWest() {
+    	matrix.setDirection(DIRECTION.WEST);    	
+    	this.matrix.rotate(ROTATION.LEFT);    	
+    	Assertions.assertEquals(DIRECTION.SOUTH , this.matrix.getDirection());
+    }
+    
+    @Test
+    public void rotateLeftdirectionSouth() {
+    	matrix.setDirection(DIRECTION.SOUTH);    	
+    	this.matrix.rotate(ROTATION.LEFT);    	
+    	Assertions.assertEquals(DIRECTION.EAST , this.matrix.getDirection());
+    }
+    
+    @Test
+    public void rotateLeftdirectionEast() {
+    	matrix.setDirection(DIRECTION.EAST);    	
+    	this.matrix.rotate(ROTATION.LEFT);    	
+    	Assertions.assertEquals(DIRECTION.NORTH , this.matrix.getDirection());
     }
 
     @Test
