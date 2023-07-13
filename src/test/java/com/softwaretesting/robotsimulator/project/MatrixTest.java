@@ -1,7 +1,6 @@
 package com.softwaretesting.robotsimulator.project;
 
 import org.junit.jupiter.api.AfterEach;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -77,16 +76,44 @@ class MatrixTest {
     
     @Test
     public void rotateLeftdirectionSouth() {
-    	matrix.setDirection(DIRECTION.SOUTH);    	
-    	this.matrix.rotate(ROTATION.LEFT);    	
-    	Assertions.assertEquals(DIRECTION.EAST , this.matrix.getDirection());
+    	matrix.setDirection(DIRECTION.SOUTH);
+        this.matrix.rotate(ROTATION.LEFT);
+        Assertions.assertEquals(DIRECTION.EAST , this.matrix.getDirection());
     }
-    
+
     @Test
     public void rotateLeftdirectionEast() {
-    	matrix.setDirection(DIRECTION.EAST);    	
-    	this.matrix.rotate(ROTATION.LEFT);    	
-    	Assertions.assertEquals(DIRECTION.NORTH , this.matrix.getDirection());
+        matrix.setDirection(DIRECTION.EAST);
+        this.matrix.rotate(ROTATION.LEFT);
+        Assertions.assertEquals(DIRECTION.NORTH , this.matrix.getDirection());
+    }
+
+    @Test
+    public void setYPositionInvalidValueTest1() {
+        Exception exception = Assertions.assertThrows(IllegalArgumentException.class , () -> this.matrix.setYPosition(15));
+
+        Assertions.assertEquals("Illegal value for Y position." , exception.getMessage());
+    }
+
+    @Test
+    public void setYPositionInvalidValueTest2() {
+        Exception exception = Assertions.assertThrows(IllegalArgumentException.class , () -> this.matrix.setYPosition(-1));
+
+        Assertions.assertEquals("Illegal value for Y position." , exception.getMessage());
+    }
+
+    @Test
+    public void setXPositionInvalidValueTest1() {
+        Exception exception = Assertions.assertThrows(IllegalArgumentException.class , () -> this.matrix.setXPosition(15));
+
+        Assertions.assertEquals("Illegal value for X position." , exception.getMessage());
+    }
+
+    @Test
+    public void setXPositionInvalidValueTest2() {
+        Exception exception = Assertions.assertThrows(IllegalArgumentException.class , () -> this.matrix.setXPosition(-1));
+
+        Assertions.assertEquals("Illegal value for X position." , exception.getMessage());
     }
 
     @Test
