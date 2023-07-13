@@ -157,6 +157,21 @@ class ProjectApplicationTest {
     }
 
     @Test
-    void processFirstCommand() {
+    void ProcessFirstCommandNull(){     		
+    	IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class , () -> ProjectApplication.processFirstCommand(null));
+    	Assertions.assertEquals("Invalid command!", exception.getMessage() );
     }
-}
+    
+    @Test
+    void ProcessFirstCommandInitializeMatrix(){
+    	ProjectApplication.processFirstCommand("I 5");
+    	Assertions.assertEquals(5, ProjectApplication.getMatrix().getSize());
+    }
+    
+    @Test
+    void ProcessFirstCommandRandomInput(){
+    	
+    	IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class , () -> ProjectApplication.processFirstCommand("D"));
+    	Assertions.assertEquals("Please Initialize the system first", exception.getMessage());
+    }
+   }

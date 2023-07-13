@@ -451,13 +451,19 @@ class MatrixTest {
     }
 
 
-    @Test
-    
-    public void changePenPosition() {
-        PEN_POSITION upPosition = PEN_POSITION.UP;
-        PEN_POSITION downPosition = PEN_POSITION.DOWN;
+    @Test    
+    public void changePenPositionUp() {
+    	matrix.setPenPosition(PEN_POSITION.DOWN);
+    	matrix.changePenPosition(PEN_POSITION.UP);
+        Assertions.assertEquals(PEN_POSITION.UP, this.matrix.getPenPosition());
 
-        Assertions.assertEquals("up", upPosition.getPosition());
-        Assertions.assertEquals("down", downPosition.getPosition());
+    }
+    
+    @Test    
+    public void changePenPositionDown() {
+    	matrix.setPenPosition(PEN_POSITION.UP);
+    	matrix.changePenPosition(PEN_POSITION.DOWN);
+        Assertions.assertEquals(PEN_POSITION.DOWN, this.matrix.getPenPosition());
+
     }
 }
