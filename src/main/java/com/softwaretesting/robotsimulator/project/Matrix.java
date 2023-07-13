@@ -38,12 +38,12 @@ public class Matrix {
 
     public void rotate(ROTATION rotation) {
         switch (rotation) {
-            case RIGHT -> moveRight();
-            case LEFT -> moveLeft();
+            case RIGHT -> rotateRight();
+            case LEFT -> rotateLeft();
         }
     }
 
-	private void moveRight() {
+	private void rotateRight() {
         if (DIRECTION.NORTH.equals(getDirection())) {
             setDirection(DIRECTION.EAST);
         } else if (DIRECTION.EAST.equals(getDirection())) {
@@ -55,7 +55,7 @@ public class Matrix {
         }
     }
 	
-    private void moveLeft() {
+    private void rotateLeft() {
         if (DIRECTION.NORTH.equals(getDirection())) {
             setDirection(DIRECTION.WEST);
         } else if (DIRECTION.WEST.equals(getDirection())) {
