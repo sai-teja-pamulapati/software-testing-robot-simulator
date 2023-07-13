@@ -1,133 +1,119 @@
 package com.softwaretesting.robotsimulator.project;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class MatrixTest {
 
-//    private final PrintStream standardOut = System.out;
-//    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     Matrix matrix = null;
     private static final Integer size = 10;
 
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
-
-    @Before
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @After
-    public void restoreStreams() {
-        
-    }
-    
     @BeforeEach
     public void setUp() {
-    	System.setOut(new PrintStream(outContent));
+        System.setOut(new PrintStream(outputStreamCaptor));
         matrix = new Matrix();
         matrix.initializeMatrix(size);
     }
 
     @AfterEach
     public void tearDown() {
-    	System.setOut(originalOut);
-    	//System.out.println(outContent.toString());
-//        System.setOut(standardOut);
+        System.setOut(standardOut);
     }
 
     @Test
-    public void showMatrixsize1() {
-    	matrix = new Matrix();
+    public void showMatrixSize1() {
         matrix.initializeMatrix(1);
-    	matrix.show();
-    	//System.out.print("hello");
-    	assertEquals("  0|    \r\n"
-    			+ "  ---\r\n"
-    			+ "     0\r\n", outContent.toString());
-    }
-    
-    @Test
-    public void showMatrixsize10() {
-    	matrix.show();
-    	//System.out.print("hello");
-        assertEquals("  9|                               \r\n"
-        		+ "  8|                               \r\n"
-        		+ "  7|                               \r\n"
-        		+ "  6|                               \r\n"
-        		+ "  5|                               \r\n"
-        		+ "  4|                               \r\n"
-        		+ "  3|                               \r\n"
-        		+ "  2|                               \r\n"
-        		+ "  1|                               \r\n"
-        		+ "  0|                               \r\n"
-        		+ "  ------------------------------\r\n"
-        		+ "     0  1  2  3  4  5  6  7  8  9\r\n", outContent.toString());
+        matrix.show();
+        String value = """
+                  0|   \s
+                  ---
+                     0
+                """;
+        assertEquals(value.trim() , outputStreamCaptor.toString().trim());
     }
 
     @Test
-    public void rotateRightdirectionNorth() {
-    	matrix.setDirection(DIRECTION.NORTH);    	
-    	this.matrix.rotate(ROTATION.RIGHT);    	
-    	Assertions.assertEquals(DIRECTION.EAST , this.matrix.getDirection());
+    public void showMatrixSize10() {
+        matrix.initializeMatrix(10);
+        matrix.show();
+        String expectedPrintValue = """
+                  9|                              \s
+                  8|                              \s
+                  7|                              \s
+                  6|                              \s
+                  5|                              \s
+                  4|                              \s
+                  3|                              \s
+                  2|                              \s
+                  1|                              \s
+                  0|                              \s
+                  ------------------------------
+                     0  1  2  3  4  5  6  7  8  9
+                """;
+        assertEquals(expectedPrintValue , outputStreamCaptor.toString());
     }
-    
+
     @Test
-    public void rotateRightdirectionEast() {
-    	matrix.setDirection(DIRECTION.EAST);    	
-    	this.matrix.rotate(ROTATION.RIGHT);    	
-    	Assertions.assertEquals(DIRECTION.SOUTH , this.matrix.getDirection());
+    public void rotateRightDirectionNorth() {
+        matrix.setDirection(DIRECTION.NORTH);
+        this.matrix.rotate(ROTATION.RIGHT);
+        Assertions.assertEquals(DIRECTION.EAST , this.matrix.getDirection());
     }
-    
+
     @Test
-    public void rotateRightdirectionSouth() {
-    	matrix.setDirection(DIRECTION.SOUTH);    	
-    	this.matrix.rotate(ROTATION.RIGHT);    	
-    	Assertions.assertEquals(DIRECTION.WEST , this.matrix.getDirection());
+    public void rotateRightDirectionEast() {
+        matrix.setDirection(DIRECTION.EAST);
+        this.matrix.rotate(ROTATION.RIGHT);
+        Assertions.assertEquals(DIRECTION.SOUTH , this.matrix.getDirection());
     }
-    
+
     @Test
-    public void rotateRightdirectionWest() {
-    	matrix.setDirection(DIRECTION.WEST);    	
-    	this.matrix.rotate(ROTATION.RIGHT);    	
-    	Assertions.assertEquals(DIRECTION.NORTH , this.matrix.getDirection());
+    public void rotateRightDirectionSouth() {
+        matrix.setDirection(DIRECTION.SOUTH);
+        this.matrix.rotate(ROTATION.RIGHT);
+        Assertions.assertEquals(DIRECTION.WEST , this.matrix.getDirection());
     }
-    
+
     @Test
-    public void rotateLeftdirectionNorth() {
-    	matrix.setDirection(DIRECTION.NORTH);    	
-    	this.matrix.rotate(ROTATION.LEFT);    	
-    	Assertions.assertEquals(DIRECTION.WEST , this.matrix.getDirection());
+    public void rotateRightDirectionWest() {
+        matrix.setDirection(DIRECTION.WEST);
+        this.matrix.rotate(ROTATION.RIGHT);
+        Assertions.assertEquals(DIRECTION.NORTH , this.matrix.getDirection());
     }
-    
+
     @Test
-    public void rotateLeftdirectionWest() {
-    	matrix.setDirection(DIRECTION.WEST);    	
-    	this.matrix.rotate(ROTATION.LEFT);    	
-    	Assertions.assertEquals(DIRECTION.SOUTH , this.matrix.getDirection());
+    public void rotateLeftDirectionNorth() {
+        matrix.setDirection(DIRECTION.NORTH);
+        this.matrix.rotate(ROTATION.LEFT);
+        Assertions.assertEquals(DIRECTION.WEST , this.matrix.getDirection());
     }
-    
+
     @Test
-    public void rotateLeftdirectionSouth() {
-    	matrix.setDirection(DIRECTION.SOUTH);
+    public void rotateLeftDirectionWest() {
+        matrix.setDirection(DIRECTION.WEST);
+        this.matrix.rotate(ROTATION.LEFT);
+        Assertions.assertEquals(DIRECTION.SOUTH , this.matrix.getDirection());
+    }
+
+    @Test
+    public void rotateLeftDirectionSouth() {
+        matrix.setDirection(DIRECTION.SOUTH);
         this.matrix.rotate(ROTATION.LEFT);
         Assertions.assertEquals(DIRECTION.EAST , this.matrix.getDirection());
     }
 
     @Test
-    public void rotateLeftdirectionEast() {
+    public void rotateLeftDirectionEast() {
         matrix.setDirection(DIRECTION.EAST);
         this.matrix.rotate(ROTATION.LEFT);
         Assertions.assertEquals(DIRECTION.NORTH , this.matrix.getDirection());
