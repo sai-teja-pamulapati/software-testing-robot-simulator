@@ -54,9 +54,6 @@ public class ProjectApplication {
 		}
 		secondCommand = secondCommand.trim();
 		String[] commandSplit = secondCommand.split("\\s+");
-		if (commandSplit.length < 1) {
-			throw new IllegalArgumentException("Invalid command!");
-		}
 		switch (commandSplit[0]) {
 			case "c" , "C" -> matrix.printPosition();
 			case "d" , "D" -> matrix.changePenPosition(PEN_POSITION.DOWN);
@@ -66,7 +63,7 @@ public class ProjectApplication {
 				if (splitStrings.length == 2 && StringUtils.isNumeric(splitStrings[1])) {
 					matrix.move(Integer.valueOf(splitStrings[1]));
 				} else {
-					System.out.println("Invalid command!");
+					throw new IllegalArgumentException("Invalid command!");
 				}
 			}
 			case "r" , "R" -> matrix.rotate(ROTATION.RIGHT);
