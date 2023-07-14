@@ -51,7 +51,7 @@ public class ProjectApplication {
 				if (splitStrings.length == 2 && StringUtils.isNumeric(splitStrings[1])) {
 					matrix.move(Integer.valueOf(splitStrings[1]));
 				} else {
-					System.out.println("Invalid command!");
+					throw new IllegalArgumentException("Invalid command!");
 				}
 			}
 			case "r" , "R" -> matrix.rotate(ROTATION.RIGHT);
