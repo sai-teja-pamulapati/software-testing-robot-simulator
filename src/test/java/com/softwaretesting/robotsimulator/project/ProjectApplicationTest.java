@@ -166,6 +166,10 @@ class ProjectApplicationTest {
     void ProcessFirstCommandInitializeMatrix(){
     	ProjectApplication.processFirstCommand("I 5");
     	Assertions.assertEquals(5, ProjectApplication.getMatrix().getSize());
+    	Assertions.assertEquals(0, ProjectApplication.getMatrix().getXPosition());
+    	Assertions.assertEquals(0, ProjectApplication.getMatrix().getYPosition());
+    	Assertions.assertEquals(DIRECTION.NORTH, ProjectApplication.getMatrix().getDirection());
+    	Assertions.assertEquals(PEN_POSITION.UP, ProjectApplication.getMatrix().getPenPosition());
     }
     
     @Test
