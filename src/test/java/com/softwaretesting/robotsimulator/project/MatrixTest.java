@@ -23,15 +23,27 @@ class MatrixTest {
         System.setOut(new PrintStream(outputStreamCaptor));
         matrix = new Matrix();
         matrix.initializeMatrix(size);
-        matrix.setXPosition(0);
-        matrix.setYPosition(0);
+
     }
 
     @AfterEach
     public void tearDown() {
         System.setOut(standardOut);
     }
-
+    
+    @Test
+    public void initialRobotPosition() {
+    	matrix.initializeMatrix(10);
+    	matrix.setDirection(DIRECTION.NORTH);
+    	matrix.setPenPosition(PEN_POSITION.UP);
+    	matrix.setXPosition(0);
+    	matrix.setYPosition(0);
+    	
+    	Assertions.assertEquals(0, matrix.getXPosition());
+    	Assertions.assertEquals(0, matrix.getYPosition());
+    	Assertions.assertEquals(DIRECTION.NORTH, matrix.getDirection());
+    	Assertions.assertEquals(PEN_POSITION.UP, matrix.getPenPosition());
+    }
     @Test
     public void showMatrixSize1() {
         matrix.initializeMatrix(1);
