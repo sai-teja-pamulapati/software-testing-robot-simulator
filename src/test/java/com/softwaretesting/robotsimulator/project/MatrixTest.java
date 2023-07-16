@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
@@ -30,6 +31,24 @@ class MatrixTest {
     public void tearDown() {
         System.setOut(standardOut);
     }
+    
+    @Test
+    public void testMatrixDimensions() {
+        int size = 10; // Set the desired size of the matrix here
+        matrix.initializeMatrix(size);
+
+        // Check if the matrix array is NxN
+        int[][] matrixArray = matrix.getMatrix();
+        Assertions.assertNotNull(matrixArray);
+        Assertions.assertEquals(size, matrixArray.length); // Check rows
+
+        for (int[] row : matrixArray) {
+            Assertions.assertNotNull(row);
+            Assertions.assertEquals(size, row.length); // Check columns
+        }
+    }
+  
+
     
     @Test
     public void initialRobotPosition() {
