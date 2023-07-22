@@ -28,7 +28,7 @@ class MatrixTest {
         System.setOut(standardOut);
     }
 
-    @DisplayName("1. R10 -> The Matrix should have NxN dimensions.")
+    @DisplayName("T1. R10 -> The Matrix should have NxN dimensions.")
     @Test
     public void testMatrixDimensions() {
         int size = 10; // Set the desired size of the matrix here
@@ -45,7 +45,7 @@ class MatrixTest {
         }
     }
 
-    @DisplayName("2. R9 -> The Robot should be initialised at the given initial positions.")
+    @DisplayName("T2. R9 -> The Robot should be initialised at the given initial positions.")
     @Test
     public void initialRobotPosition() {
         matrix.initializeMatrix(10);
@@ -60,7 +60,7 @@ class MatrixTest {
         Assertions.assertEquals(PEN_POSITION.UP , matrix.getPenPosition());
     }
 
-    @DisplayName("3. R8 -> The Robot's position is displayed with the show method.")
+    @DisplayName("T3. R8 -> The Robot's position is displayed with the show method.")
     @Test
     public void showMatrixSize1() {
         matrix.initializeMatrix(1);
@@ -68,7 +68,7 @@ class MatrixTest {
         assertNotNull(outputStreamCaptor.toString().trim());
     }
 
-    @DisplayName("4. R8 -> The Robot's position is displayed with the show method.")
+    @DisplayName("T4. R8 -> The Robot's position is displayed with the show method.")
     @Test
     public void showMatrixSize10() {
         matrix.initializeMatrix(10);
@@ -76,7 +76,7 @@ class MatrixTest {
         assertNotNull(outputStreamCaptor.toString().trim());
     }
 
-    @DisplayName("5. R8 -> The Robot's position is displayed with the show method.")
+    @DisplayName("T5. R8 -> The Robot's position is displayed with the show method.")
     @Test
     public void showMatrixPenDown() {
         matrix.initializeMatrix(10);
@@ -88,7 +88,7 @@ class MatrixTest {
         assertNotNull(outputStreamCaptor.toString().trim());
     }
 
-    @DisplayName("6. R3 -> The Robot's direction is rotated as per the given input (Initial Position is North, Rotating Right)")
+    @DisplayName("T6. R3 -> The Robot's direction is rotated as per the given input (Initial Position is North, Rotating Right)")
     @Test
     public void rotateRightDirectionNorth() {
         matrix.setDirection(DIRECTION.NORTH);
@@ -96,7 +96,7 @@ class MatrixTest {
         Assertions.assertEquals(DIRECTION.EAST , this.matrix.getDirection());
     }
 
-    @DisplayName("7. R3 -> The Robot's direction is rotated as per the given input (Initial Position is East, Rotating Right)")
+    @DisplayName("T7. R3 -> The Robot's direction is rotated as per the given input (Initial Position is East, Rotating Right)")
     @Test
     public void rotateRightDirectionEast() {
         matrix.setDirection(DIRECTION.EAST);
@@ -104,7 +104,7 @@ class MatrixTest {
         Assertions.assertEquals(DIRECTION.SOUTH , this.matrix.getDirection());
     }
 
-    @DisplayName("8. R3 -> The Robot's direction is rotated as per the given input (Initial Position is South, Rotating Right)")
+    @DisplayName("T8. R3 -> The Robot's direction is rotated as per the given input (Initial Position is South, Rotating Right)")
     @Test
     public void rotateRightDirectionSouth() {
         matrix.setDirection(DIRECTION.SOUTH);
@@ -112,7 +112,7 @@ class MatrixTest {
         Assertions.assertEquals(DIRECTION.WEST , this.matrix.getDirection());
     }
 
-    @DisplayName("9. R3 -> The Robot's direction is rotated as per the given input (Initial Position is West, Rotating Right)")
+    @DisplayName("T9. R3 -> The Robot's direction is rotated as per the given input (Initial Position is West, Rotating Right)")
     @Test
     public void rotateRightDirectionWest() {
         matrix.setDirection(DIRECTION.WEST);
@@ -120,7 +120,7 @@ class MatrixTest {
         Assertions.assertEquals(DIRECTION.NORTH , this.matrix.getDirection());
     }
 
-    @DisplayName("10. R3 -> The Robot's direction is rotated as per the given input (Initial Position is North, Rotating Left)")
+    @DisplayName("T10. R3 -> The Robot's direction is rotated as per the given input (Initial Position is North, Rotating Left)")
     @Test
     public void rotateLeftDirectionNorth() {
         matrix.setDirection(DIRECTION.NORTH);
@@ -128,7 +128,7 @@ class MatrixTest {
         Assertions.assertEquals(DIRECTION.WEST , this.matrix.getDirection());
     }
 
-    @DisplayName("11. R3 -> The Robot's direction is rotated as per the given input (Initial Position is West, Rotating Left)")
+    @DisplayName("T11. R3 -> The Robot's direction is rotated as per the given input (Initial Position is West, Rotating Left)")
     @Test
     public void rotateLeftDirectionWest() {
         matrix.setDirection(DIRECTION.WEST);
@@ -136,7 +136,7 @@ class MatrixTest {
         Assertions.assertEquals(DIRECTION.SOUTH , this.matrix.getDirection());
     }
 
-    @DisplayName("12. R3 -> The Robot's direction is rotated as per the given input (Initial Position is South, Rotating Left)")
+    @DisplayName("T12. R3 -> The Robot's direction is rotated as per the given input (Initial Position is South, Rotating Left)")
     @Test
     public void rotateLeftDirectionSouth() {
         matrix.setDirection(DIRECTION.SOUTH);
@@ -144,7 +144,7 @@ class MatrixTest {
         Assertions.assertEquals(DIRECTION.EAST , this.matrix.getDirection());
     }
 
-    @DisplayName("13. R3 -> The Robot's direction is rotated as per the given input (Initial Position is East, Rotating Left)")
+    @DisplayName("T13. R3 -> The Robot's direction is rotated as per the given input (Initial Position is East, Rotating Left)")
     @Test
     public void rotateLeftDirectionEast() {
         matrix.setDirection(DIRECTION.EAST);
@@ -152,7 +152,7 @@ class MatrixTest {
         Assertions.assertEquals(DIRECTION.NORTH , this.matrix.getDirection());
     }
 
-    @DisplayName("14. R10 -> The Robot's position should not be outside the matrix.")
+    @DisplayName("T14. R10 -> The Robot's position should not be outside the matrix.")
     @Test
     public void setYPositionInvalidValueTest1() {
         Exception exception = Assertions.assertThrows(IllegalArgumentException.class , () -> this.matrix.setYPosition(15));
@@ -160,7 +160,7 @@ class MatrixTest {
         Assertions.assertEquals("Illegal value for Y position." , exception.getMessage());
     }
 
-    @DisplayName("15. R10 -> The Robot's position should not be outside the matrix.")
+    @DisplayName("T15. R10 -> The Robot's position should not be outside the matrix.")
     @Test
     public void setYPositionInvalidValueTest2() {
         Exception exception = Assertions.assertThrows(IllegalArgumentException.class , () -> this.matrix.setYPosition(-1));
@@ -168,7 +168,7 @@ class MatrixTest {
         Assertions.assertEquals("Illegal value for Y position." , exception.getMessage());
     }
 
-    @DisplayName("16. R10 -> The Robot's position should not be outside the matrix.")
+    @DisplayName("T16. R10 -> The Robot's position should not be outside the matrix.")
     @Test
     public void setXPositionInvalidValueTest1() {
         Exception exception = Assertions.assertThrows(IllegalArgumentException.class , () -> this.matrix.setXPosition(15));
@@ -176,7 +176,7 @@ class MatrixTest {
         Assertions.assertEquals("Illegal value for X position." , exception.getMessage());
     }
 
-    @DisplayName("17. R10 -> The Robot's position should not be outside the matrix.")
+    @DisplayName("T17. R10 -> The Robot's position should not be outside the matrix.")
     @Test
     public void setXPositionInvalidValueTest2() {
         Exception exception = Assertions.assertThrows(IllegalArgumentException.class , () -> this.matrix.setXPosition(-1));
@@ -185,7 +185,7 @@ class MatrixTest {
 
     }
 
-    @DisplayName("18. R4,R6 -> The Robot should move according to the input, without tracing on the floor when the pen is up. (Moving East)")
+    @DisplayName("T18. R4,R6 -> The Robot should move according to the input, without tracing on the floor when the pen is up. (Moving East)")
     @Test
     public void moveEastPenUp() {
         int[][] initialMatrix = new int[size][size];
@@ -206,7 +206,7 @@ class MatrixTest {
         Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
-    @DisplayName("19. R4,R6 -> The Robot should move according to the input, without tracing on the floor when the pen is up. (Moving West)")
+    @DisplayName("T19. R4,R6 -> The Robot should move according to the input, without tracing on the floor when the pen is up. (Moving West)")
     @Test
     public void moveWestPenUp() {
         int[][] initialMatrix = new int[size][size];
@@ -227,7 +227,7 @@ class MatrixTest {
         Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
-    @DisplayName("20. R4,R6 -> The Robot should move according to the input, without tracing on the floor when the pen is up. (Moving North)")
+    @DisplayName("T20. R4,R6 -> The Robot should move according to the input, without tracing on the floor when the pen is up. (Moving North)")
     @Test
     public void moveNorthPenUp() {
         int[][] initialMatrix = new int[size][size];
@@ -248,7 +248,7 @@ class MatrixTest {
         Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
-    @DisplayName("21. R4,R6 -> The Robot should move according to the input, without tracing on the floor when the pen is up. (Moving South)")
+    @DisplayName("T21. R4,R6 -> The Robot should move according to the input, without tracing on the floor when the pen is up. (Moving South)")
     @Test
     public void moveSouthPenUp() {
         int[][] initialMatrix = new int[size][size];
@@ -269,7 +269,7 @@ class MatrixTest {
         Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
-    @DisplayName("22. R4,R5 -> The Robot should move according to the input, with tracing on the floor when the pen is down. (Moving East)")
+    @DisplayName("T22. R4,R5 -> The Robot should move according to the input, with tracing on the floor when the pen is down. (Moving East)")
     @Test
     public void moveEastPenDown() {
         int[][] initialMatrix = new int[size][size];
@@ -302,7 +302,7 @@ class MatrixTest {
         }
     }
 
-    @DisplayName("23. R4,R5 -> The Robot should move according to the input, with tracing on the floor when the pen is down. (Moving West)")
+    @DisplayName("T23. R4,R5 -> The Robot should move according to the input, with tracing on the floor when the pen is down. (Moving West)")
     @Test
     public void moveWestPenDown() {
         int[][] initialMatrix = new int[size][size];
@@ -324,7 +324,7 @@ class MatrixTest {
 
     }
 
-    @DisplayName("24. R4,R5 -> The Robot should move according to the input, with tracing on the floor when the pen is down. (Moving North)")
+    @DisplayName("T24. R4,R5 -> The Robot should move according to the input, with tracing on the floor when the pen is down. (Moving North)")
     @Test
     public void moveNorthPenDown() {
         int[][] initialMatrix = new int[size][size];
@@ -358,7 +358,7 @@ class MatrixTest {
         }
     }
 
-    @DisplayName("25. R4,R5 -> The Robot should move according to the input, with tracing on the floor when the pen is down. (Moving South)")
+    @DisplayName("T25. R4,R5 -> The Robot should move according to the input, with tracing on the floor when the pen is down. (Moving South)")
     @Test
     public void moveSouthPenDown() {
         int[][] initialMatrix = new int[size][size];
@@ -380,7 +380,7 @@ class MatrixTest {
 
     }
 
-    @DisplayName("26. R4 -> The Robot should not move outside the defined boundary. (Moving East)")
+    @DisplayName("T26. R4 -> The Robot should not move outside the defined boundary. (Moving East)")
     @Test
     public void moveEastPenUpThrowException() {
         int[][] initialMatrix = new int[size][size];
@@ -402,7 +402,7 @@ class MatrixTest {
         Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
-    @DisplayName("27. R4 -> The Robot should not move outside the defined boundary. (Moving West)")
+    @DisplayName("T27. R4 -> The Robot should not move outside the defined boundary. (Moving West)")
     @Test
     public void moveWestPenUpThrowException() {
         int[][] initialMatrix = new int[size][size];
@@ -424,7 +424,7 @@ class MatrixTest {
         Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
-    @DisplayName("28. R4 -> The Robot should not move outside the defined boundary. (Moving North)")
+    @DisplayName("T28. R4 -> The Robot should not move outside the defined boundary. (Moving North)")
     @Test
     public void moveNorthPenUpThrowException() {
         int[][] initialMatrix = new int[size][size];
@@ -447,7 +447,7 @@ class MatrixTest {
         Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
-    @DisplayName("29. R4 -> The Robot should not move outside the defined boundary. (Moving South)")
+    @DisplayName("T29. R4 -> The Robot should not move outside the defined boundary. (Moving South)")
     @Test
     public void moveSouthPenUpThrowException() {
         int[][] initialMatrix = new int[size][size];
@@ -470,7 +470,7 @@ class MatrixTest {
         Assertions.assertArrayEquals(initialMatrix , this.matrix.getMatrix());
     }
 
-    @DisplayName("30. R7 -> The Robot's current position, direction and pen position should be printed.")
+    @DisplayName("T30. R7 -> The Robot's current position, direction and pen position should be printed.")
     @Test
     public void printPosition() {
         matrix.setYPosition(3);
@@ -485,7 +485,7 @@ class MatrixTest {
                 .trim());
     }
 
-    @DisplayName("31. R7 -> The Robot's current position, direction and pen position should be printed.")
+    @DisplayName("T31. R7 -> The Robot's current position, direction and pen position should be printed.")
     @Test
     public void printPosition2() {
         matrix.setYPosition(4);
@@ -500,7 +500,7 @@ class MatrixTest {
                 .trim());
     }
 
-    @DisplayName("32. R2 -> The pen position should change according to the given input. Changing the pen position to Up.")
+    @DisplayName("T32. R2 -> The pen position should change according to the given input. Changing the pen position to Up.")
     @Test
     public void changePenPositionUp() {
         matrix.setPenPosition(PEN_POSITION.DOWN);
@@ -509,7 +509,7 @@ class MatrixTest {
 
     }
 
-    @DisplayName("33. R2 -> The pen position should change according to the given input. Changing the pen position to Down.")
+    @DisplayName("T33. R2 -> The pen position should change according to the given input. Changing the pen position to Down.")
     @Test
     public void changePenPositionDown() {
         matrix.setPenPosition(PEN_POSITION.UP);
