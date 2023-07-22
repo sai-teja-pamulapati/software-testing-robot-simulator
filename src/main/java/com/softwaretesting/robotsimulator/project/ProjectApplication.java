@@ -39,7 +39,7 @@ public class ProjectApplication {
 		}
 		secondCommand = secondCommand.trim();
 		String[] commandSplit = secondCommand.split("\\s+");
-		if (commandSplit.length < 1) {
+		if (!"m".equalsIgnoreCase(commandSplit[0]) && commandSplit.length != 1) {
 			throw new IllegalArgumentException("Invalid command!");
 		}
 		switch (commandSplit[0]) {

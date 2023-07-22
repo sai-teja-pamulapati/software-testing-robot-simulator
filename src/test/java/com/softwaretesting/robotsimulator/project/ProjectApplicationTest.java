@@ -1,10 +1,6 @@
 package com.softwaretesting.robotsimulator.project;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -149,7 +145,7 @@ class ProjectApplicationTest {
 
     @DisplayName("T48. R1 -> Robot should be following the given instruction. (Input is Invalid)")
     @Test
-    void processCommandsInvalidInput2() {
+    void processCommandsInvalidInput() {
         ProjectApplication.getMatrix().initializeMatrix(5);
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class , () -> ProjectApplication.processCommands("m"));
         Assertions.assertEquals("Invalid command!" , exception.getMessage());
@@ -157,14 +153,21 @@ class ProjectApplicationTest {
 
     @DisplayName("T49. R1 -> Robot should be following the given instruction. (Input is Invalid)")
     @Test
-    void processCommandsInvalidInput() {
+    void processCommandsInvalidInput2() {
         ProjectApplication.getMatrix().initializeMatrix(5);
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class , () -> ProjectApplication.processCommands("  "));
         Assertions.assertEquals("Invalid command!" , exception.getMessage());
     }
-    
-    
-    @DisplayName("T50. R1 -> Robot should be following the given instruction. (Input is Null )")
+
+    @DisplayName("T50. R1 -> Robot should be following the given instruction. (Input is Invalid)")
+    @Test
+    void processCommandsInvalidInput3() {
+        ProjectApplication.getMatrix().initializeMatrix(5);
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class , () -> ProjectApplication.processCommands("C 5"));
+        Assertions.assertEquals("Invalid command!" , exception.getMessage());
+    }
+
+    @DisplayName("T51. R1 -> Robot should be following the given instruction. (Input is Null )")
     @Test
     void processCommandsNullInput() {
         ProjectApplication.getMatrix().initializeMatrix(5);
@@ -172,14 +175,14 @@ class ProjectApplicationTest {
         Assertions.assertEquals("Invalid command!" , exception.getMessage());
     }
 
-    @DisplayName("T51. R1 -> Robot should be following the given instruction. (First command is Null)")
+    @DisplayName("T52. R1 -> Robot should be following the given instruction. (First command is Null)")
     @Test
     void ProcessFirstCommandNull(){     		
     	IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class , () -> ProjectApplication.processFirstCommand(null));
     	Assertions.assertEquals("Invalid command!", exception.getMessage() );
     }
-    
-    @DisplayName("T52. R1 -> Robot should be following the given instruction. (Initialize the matrix)")
+
+    @DisplayName("T53. R1 -> Robot should be following the given instruction. (Initialize the matrix)")
     @Test
     void ProcessFirstCommandInitializeMatrix(){
     	ProjectApplication.processFirstCommand("I 5");
@@ -189,8 +192,8 @@ class ProjectApplicationTest {
     	Assertions.assertEquals(DIRECTION.NORTH, ProjectApplication.getMatrix().getDirection());
     	Assertions.assertEquals(PEN_POSITION.UP, ProjectApplication.getMatrix().getPenPosition());
     }
-   
-    @DisplayName("T53. R1 -> Robot should be following the given instruction. (Input is Random)")
+
+    @DisplayName("T54. R1 -> Robot should be following the given instruction. (Input is Random)")
     @Test
     void ProcessFirstCommandRandomInput(){
     	
