@@ -21,6 +21,7 @@ class ProjectApplicationTest {
     public void tearDown() {
         System.setOut(standardOut);
     }
+
     @DisplayName("T34. R1 -> Robot should be following the given instruction. (Input is capital M)")
     @Test
     void processCommandsInputCapitalM() {
