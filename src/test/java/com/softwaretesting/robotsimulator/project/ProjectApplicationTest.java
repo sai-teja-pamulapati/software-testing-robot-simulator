@@ -34,6 +34,7 @@ class ProjectApplicationTest {
     }
 
     @DisplayName("T35. R1 -> Robot should be following the given instruction. (Input is small M)")
+    @Test
     void processCommandsInputSmallM() {
         ProjectApplication.getMatrix().initializeMatrix(10);
         ProjectApplication.processCommands("m 9");
