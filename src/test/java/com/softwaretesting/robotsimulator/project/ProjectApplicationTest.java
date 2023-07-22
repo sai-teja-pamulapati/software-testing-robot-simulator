@@ -167,7 +167,15 @@ class ProjectApplicationTest {
         Assertions.assertEquals("Invalid command!" , exception.getMessage());
     }
 
-    @DisplayName("T51. R1 -> Robot should be following the given instruction. (Input is Null )")
+    @DisplayName("T51. R1 -> Robot should be following the given instruction. (Input is Invalid)")
+    @Test
+    void processCommandsInvalidInput4() {
+        ProjectApplication.getMatrix().initializeMatrix(5);
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class , () -> ProjectApplication.processCommands("M c"));
+        Assertions.assertEquals("Invalid command!" , exception.getMessage());
+    }
+
+    @DisplayName("T52. R1 -> Robot should be following the given instruction. (Input is Null )")
     @Test
     void processCommandsNullInput() {
         ProjectApplication.getMatrix().initializeMatrix(5);
@@ -175,14 +183,14 @@ class ProjectApplicationTest {
         Assertions.assertEquals("Invalid command!" , exception.getMessage());
     }
 
-    @DisplayName("T52. R1 -> Robot should be following the given instruction. (First command is Null)")
+    @DisplayName("T53. R1 -> Robot should be following the given instruction. (First command is Null)")
     @Test
-    void ProcessFirstCommandNull(){     		
+    void ProcessFirstCommandNull() {
     	IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class , () -> ProjectApplication.processFirstCommand(null));
     	Assertions.assertEquals("Invalid command!", exception.getMessage() );
     }
 
-    @DisplayName("T53. R1 -> Robot should be following the given instruction. (Initialize the matrix)")
+    @DisplayName("T54. R1 -> Robot should be following the given instruction. (Initialize the matrix)")
     @Test
     void ProcessFirstCommandInitializeMatrix(){
     	ProjectApplication.processFirstCommand("I 5");
@@ -190,14 +198,31 @@ class ProjectApplicationTest {
     	Assertions.assertEquals(0, ProjectApplication.getMatrix().getXPosition());
     	Assertions.assertEquals(0, ProjectApplication.getMatrix().getYPosition());
     	Assertions.assertEquals(DIRECTION.NORTH, ProjectApplication.getMatrix().getDirection());
-    	Assertions.assertEquals(PEN_POSITION.UP, ProjectApplication.getMatrix().getPenPosition());
+        Assertions.assertEquals(PEN_POSITION.UP , ProjectApplication.getMatrix().getPenPosition());
     }
 
-    @DisplayName("T54. R1 -> Robot should be following the given instruction. (Input is Random)")
+    @DisplayName("T55. R1 -> Robot should be following the given instruction. (Input is Invalid)")
     @Test
-    void ProcessFirstCommandRandomInput(){
-    	
-    	IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class , () -> ProjectApplication.processFirstCommand("D"));
-    	Assertions.assertEquals("Please Initialize the system first", exception.getMessage());
+    void ProcessFirstCommandInvalidInput() {
+
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class , () -> ProjectApplication.processFirstCommand("D"));
+        Assertions.assertEquals("Please Initialize the system first" , exception.getMessage());
     }
-   }
+
+    @DisplayName("T56. R1 -> Robot should be following the given instruction. (Input is Invalid)")
+    @Test
+    void ProcessFirstCommandInvalidInput2() {
+
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class , () -> ProjectApplication.processFirstCommand("i g"));
+        Assertions.assertEquals("Please Initialize the system first" , exception.getMessage());
+    }
+
+    @DisplayName("T57. R1 -> Robot should be following the given instruction. (Input is Invalid)")
+    @Test
+    void ProcessFirstCommandInvalidInput3() {
+
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class , () -> ProjectApplication.processFirstCommand("i 4 s"));
+        Assertions.assertEquals("Please Initialize the system first" , exception.getMessage());
+    }
+
+}
